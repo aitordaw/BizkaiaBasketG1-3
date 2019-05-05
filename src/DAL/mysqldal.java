@@ -20,7 +20,7 @@ public class mysqldal {
 			catch (SQLException e){  
 
 							
-			throw e; // Lanzar la excepción
+			throw e; // Lanzar la excepción para controlarla en inicio
 			
 		}
 		

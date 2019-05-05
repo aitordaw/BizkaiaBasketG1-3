@@ -3,6 +3,7 @@ package GUI;
 import java.sql.SQLException;
 
 import DAL.mysqldal;
+import DAL.objectdbdal;
 
 public class inicio {
 
@@ -22,6 +23,24 @@ public class inicio {
 			
 			
 			System.out.println("MySQL Conexión incorrecta.");
+
+			e.printStackTrace();
+			
+		}
+		
+try {
+			
+			objectdbdal.connect("localhost/bizkaiaBasket.odb", "admin", "admin");// Si es correto
+			
+			System.out.println("objectDB Conexión correcta.");
+
+			
+		}
+		
+		catch (Exception e) {
+			
+			
+			System.out.println("objectDB Conexión incorrecta.");
 
 			e.printStackTrace();
 			
