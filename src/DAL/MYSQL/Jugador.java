@@ -1,5 +1,5 @@
 package DAL.MYSQL;
 
-public class jugador {
+public class Jugador {
 
 }
