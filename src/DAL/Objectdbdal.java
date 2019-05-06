@@ -48,12 +48,10 @@ public class Objectdbdal {
 					// Muestra la cantidad de usuarios registrados en el sistema.
 					System.out.println("Usuarios registrados: " + numeroUsuarios);
 			}
-		
 
 		
-		}
 			// Si surje alguna excepcion durante la conexión con objectDB:
-			catch (PersistenceException e) {
+			} catch (PersistenceException e) {
 		
 					// Creamos la cuenta por defecto.
 					Usuario admin = new Usuario("admin", "admin");
@@ -75,7 +73,5 @@ public class Objectdbdal {
 			// Cerramos el enlace con objectDB.
 			em.close();
 		}
-
 	}
-
 }
