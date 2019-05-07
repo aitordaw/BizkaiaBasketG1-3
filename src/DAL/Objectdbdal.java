@@ -9,6 +9,7 @@ import java.util.*;
 public class Objectdbdal {
 
 	private static EntityManagerFactory odb;
+	private static Usuario login;
 
 	// Método para conectar con objectDB: Pede lanzar excepciones
 	public static void connect(String url, String usuario, String password) 
@@ -72,6 +73,25 @@ public class Objectdbdal {
 		} finally {
 			// Cerramos el enlace con objectDB.
 			em.close();
+		}
+	}
+	
+	public static void recogerLogin(){
+		
+		String u;
+		String p;
+		
+		while (login == null) {
+			
+			Scanner teclado = new Scanner(System.in);
+			System.out.println("Ingrese nombre de usuario:");
+			u = teclado.nextLine();
+			System.out.println("Ingrese contraseña:");
+			p = teclado.nextLine();
+			teclado.close();
+			
+			login = new Usuario(u, p);
+			
 		}
 	}
 }

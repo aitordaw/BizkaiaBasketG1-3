@@ -1,20 +1,13 @@
 package GUI;
 
 import java.sql.SQLException;
-import java.util.Scanner;
-
 import javax.persistence.PersistenceException;
 
 import DAL.Mysqldal;
 import DAL.Objectdbdal;
-import DAL.OBJECTDB.Usuario;
 
 public class Inicio {
-		
-	private static Usuario login;
-	static String u;
-	static String p;
-	
+			
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -43,21 +36,8 @@ public class Inicio {
 		
 		finally {
 			
-			while (login == null) {
+			Objectdbdal.recogerLogin();
 			
-				Scanner teclado = new Scanner(System.in);
-				System.out.println("Ingrese nombre de usuario:");
-				u = teclado.nextLine();
-				System.out.println("Ingrese contraseña:");
-				p = teclado.nextLine();
-				teclado.close();
-				
-				login = new Usuario(u, p);
-			
-			// System.out.println(u + " " + p);
-				System.out.println(login);
-				
-			}
 		}
 	}
 }
