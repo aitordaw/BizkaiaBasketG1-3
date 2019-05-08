@@ -1,5 +1,18 @@
 package BLL;
 
+import GUI.VentanaAdmin;
+import GUI.VentanaGEquipos;
+import GUI.VentanaGJugadores;
+import GUI.VentanaGPartidos;
+import GUI.VentanaGUsuarios;
+import GUI.VentanaLogin;
+import GUI.VentanaObservador;
+import GUI.VentanaTemporada;
+import GUI.VentanaUsuario;
+import GUI.VentanaVEquipos;
+import GUI.VentanaVJugadores;
+import GUI.VentanaVPartidos;
+
 public class AbrirVentanas {
 
 	public static void vePAdmin() {
