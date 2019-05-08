@@ -50,7 +50,7 @@ public class VentanaObservador extends JFrame {
 	public VentanaObservador() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 610, 510);
+		setBounds(100, 100, 980, 840);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -119,8 +119,8 @@ public class VentanaObservador extends JFrame {
 		panelObservador.add(btnCSesion);
 		
 		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(VentanaObservador.class.getResource("/BizkaiaBasket/Fondo.png")));
-		lblFondo.setBounds(0, 0, 604, 481);
+		lblFondo.setIcon(new ImageIcon(VentanaObservador.class.getResource("/IMG/Fondo-tr.png")));
+		lblFondo.setBounds(0, 0, 974, 811);
 		panelObservador.add(lblFondo);
 	}
 	

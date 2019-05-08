@@ -55,7 +55,7 @@ public class VentanaVEquipos extends JFrame {
 		setResizable(false);
 		setTitle("Ventana Ver Equipos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 610, 510);
+		setBounds(100, 100, 980, 840);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -66,8 +66,8 @@ public class VentanaVEquipos extends JFrame {
 		panelVEquipos.setLayout(null);
 
 		btnVolver = new JButton("");
-		btnVolver.setSelectedIcon(new ImageIcon(VentanaVEquipos.class.getResource("/BizkaiaBasket/arrowleft.png")));
-		btnVolver.setIcon(new ImageIcon(VentanaVEquipos.class.getResource("/BizkaiaBasket/arrowleft.png")));
+		btnVolver.setSelectedIcon(new ImageIcon(VentanaVEquipos.class.getResource("/IMG/arrowleft.png")));
+		btnVolver.setIcon(new ImageIcon(VentanaVEquipos.class.getResource("/IMG/arrowleft.png")));
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BtnVolver();
@@ -111,8 +111,8 @@ public class VentanaVEquipos extends JFrame {
 		tblVEquipos.setBackground(new Color(233, 150, 122));
 
 		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(VentanaVEquipos.class.getResource("/BizkaiaBasket/Fondo.png")));
-		lblFondo.setBounds(0, 0, 604, 481);
+		lblFondo.setIcon(new ImageIcon(VentanaVEquipos.class.getResource("/IMG/Fondo-tr.png")));
+		lblFondo.setBounds(0, 0, 974, 811);
 		panelVEquipos.add(lblFondo);
 	}
 

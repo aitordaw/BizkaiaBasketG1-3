@@ -56,7 +56,7 @@ public class VentanaLogin extends JFrame implements ActionListener {
 		setResizable(false);
 		setTitle("¡Bienvenido a la aplicaci\u00F3n BizkaiaBasket!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 610, 510);
+		setBounds(100, 100, 980, 840);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
@@ -69,22 +69,24 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
 		lblUsuario = new JLabel("USUARIO");
 		lblUsuario.setForeground(Color.LIGHT_GRAY);
-		lblUsuario.setBounds(60, 323, 89, 24);
-		lblUsuario.setFont(new Font("Arial", Font.BOLD, 20));
+		lblUsuario.setBounds(312, 173, 138, 33);
+		lblUsuario.setFont(new Font("Arial", Font.BOLD, 30));
 
 		lblPassword = new JLabel("PASSWORD");
 		lblPassword.setForeground(Color.LIGHT_GRAY);
-		lblPassword.setBounds(60, 366, 115, 24);
-		lblPassword.setFont(new Font("Arial", Font.BOLD, 20));
+		lblPassword.setBounds(506, 168, 183, 43);
+		lblPassword.setFont(new Font("Arial", Font.BOLD, 30));
 
 		txtUsuario = new JTextField();
+		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtUsuario.addActionListener(this);
-		txtUsuario.setBounds(223, 322, 116, 25);
+		txtUsuario.setBounds(291, 211, 176, 43);
 		txtUsuario.setColumns(10);
 
 		pwdPassword = new JPasswordField();
+		pwdPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		pwdPassword.addActionListener(this);
-		pwdPassword.setBounds(223, 365, 116, 25);
+		pwdPassword.setBounds(506, 211, 176, 43);
 		panelLogin.setLayout(null);
 		panelLogin.add(lblPassword);
 		panelLogin.add(lblUsuario);
@@ -101,8 +103,8 @@ public class VentanaLogin extends JFrame implements ActionListener {
 
 		lblFondo = new JLabel("");
 		lblFondo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFondo.setIcon(new ImageIcon(VentanaLogin.class.getResource("/BizkaiaBasket/Fondo.png")));
-		lblFondo.setBounds(0, 0, 604, 481);
+		lblFondo.setIcon(new ImageIcon(VentanaLogin.class.getResource("/IMG/Fondo.png")));
+		lblFondo.setBounds(0, 0, 974, 811);
 		panelLogin.add(lblFondo);
 	}
 

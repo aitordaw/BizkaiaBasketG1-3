@@ -55,7 +55,7 @@ public class VentanaVJugadores extends JFrame {
 		setResizable(false);
 		setTitle("Ventana Vista Jugadores");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 610, 510);
+		setBounds(100, 100, 980, 840);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
@@ -66,7 +66,7 @@ public class VentanaVJugadores extends JFrame {
 		panelVJugadores.setLayout(null);
 
 		btnVolver = new JButton("");
-		btnVolver.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/BizkaiaBasket/arrowleft.png")));
+		btnVolver.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/IMG/arrowleft.png")));
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BtnVolver();
@@ -141,8 +141,8 @@ public class VentanaVJugadores extends JFrame {
 		tblVJugadores.setBackground(new Color(233, 150, 122));
 
 		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/BizkaiaBasket/Fondo.png")));
-		lblFondo.setBounds(0, 0, 604, 481);
+		lblFondo.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/IMG/Fondo-tr.png")));
+		lblFondo.setBounds(0, 0, 974, 811);
 		panelVJugadores.add(lblFondo);
 	}
 
