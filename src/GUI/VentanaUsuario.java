@@ -70,7 +70,7 @@ public class VentanaUsuario extends JFrame {
 		btnEquipos.setForeground(Color.BLACK);
 		btnEquipos.setFont(new Font("Arial", Font.BOLD, 20));
 		btnEquipos.setBackground(Color.WHITE);
-		btnEquipos.setBounds(171, 186, 150, 77);
+		btnEquipos.setBounds(285, 534, 396, 77);
 		panelUsuario.add(btnEquipos);
 		
 		btnJugadores = new JButton("Jugadores");
@@ -81,7 +81,7 @@ public class VentanaUsuario extends JFrame {
 		});
 		btnJugadores.setFont(new Font("Arial", Font.BOLD, 20));
 		btnJugadores.setBackground(Color.WHITE);
-		btnJugadores.setBounds(71, 304, 150, 77);
+		btnJugadores.setBounds(285, 336, 396, 77);
 		panelUsuario.add(btnJugadores);
 		
 		btnPartidos = new JButton("Partidos");
@@ -93,7 +93,7 @@ public class VentanaUsuario extends JFrame {
 		
 		btnPartidos.setFont(new Font("Arial", Font.BOLD, 20));
 		btnPartidos.setBackground(Color.WHITE);
-		btnPartidos.setBounds(286, 304, 150, 76);
+		btnPartidos.setBounds(285, 435, 396, 77);
 		panelUsuario.add(btnPartidos);
 		
 		btnCSesion = new JButton("Cerrar Sesion");
@@ -105,7 +105,7 @@ public class VentanaUsuario extends JFrame {
 		btnCSesion.setForeground(Color.BLACK);
 		btnCSesion.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCSesion.setBackground(Color.WHITE);
-		btnCSesion.setBounds(485, 437, 113, 38);
+		btnCSesion.setBounds(392, 722, 186, 38);
 		panelUsuario.add(btnCSesion);
 		
 		lblFondo = new JLabel("");

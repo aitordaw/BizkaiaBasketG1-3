@@ -93,52 +93,12 @@ public class VentanaGUsuarios extends JFrame {
 		lblGUsuarios.setBounds(129, 44, 220, 39);
 		panelFondo.add(lblGUsuarios);
 
-		lblPassword = new JLabel("Contrase\u00F1a");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setForeground(Color.WHITE);
-		lblPassword.setFont(new Font("Arial", Font.BOLD, 15));
-		lblPassword.setBounds(345, 335, 188, 27);
-		panelFondo.add(lblPassword);
-
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNombre.setBounds(63, 334, 188, 28);
+		lblNombre.setBounds(216, 425, 188, 28);
 		panelFondo.add(lblNombre);
-
-		btnCrear = new JButton("Crear");
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent c) {
-				BtnGUCrear();
-			}
-		});
-		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
-		btnCrear.setBackground(Color.WHITE);
-		btnCrear.setBounds(105, 408, 95, 39);
-		panelFondo.add(btnCrear);
-
-		btnModificar = new JButton("Modificar");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
-		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(256, 408, 89, 39);
-		panelFondo.add(btnModificar);
-
-		btnEliminar = new JButton("Eliminar");
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BtnEliminar();
-			}
-		});
-		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
-		btnEliminar.setBackground(Color.WHITE);
-		btnEliminar.setBounds(402, 408, 89, 39);
-		panelFondo.add(btnEliminar);
 
 		btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
@@ -154,17 +114,12 @@ public class VentanaGUsuarios extends JFrame {
 
 		txtUsuario = new JTextField();
 		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(63, 368, 188, 28);
+		txtUsuario.setBounds(216, 453, 188, 28);
 		panelFondo.add(txtUsuario);
-
-		txtPassword = new JTextField();
-		txtPassword.setColumns(10);
-		txtPassword.setBounds(345, 368, 188, 28);
-		panelFondo.add(txtPassword);
 
 		scpGUsuarios = new JScrollPane();
 		scpGUsuarios.setEnabled(false);
-		scpGUsuarios.setBounds(53, 99, 499, 183);
+		scpGUsuarios.setBounds(53, 99, 845, 257);
 		panelFondo.add(scpGUsuarios);
 
 		tblGUsuarios = new JTable();
@@ -181,6 +136,51 @@ public class VentanaGUsuarios extends JFrame {
 		lblFondo.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/Fondo-tr.png")));
 		lblFondo.setBounds(0, 0, 974, 811);
 		panelFondo.add(lblFondo);
+		
+				txtPassword = new JTextField();
+				txtPassword.setBounds(577, 453, 188, 28);
+				contentPane.add(txtPassword);
+				txtPassword.setColumns(10);
+				
+						btnEliminar = new JButton("Eliminar");
+						btnEliminar.setBounds(628, 534, 89, 39);
+						contentPane.add(btnEliminar);
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								BtnEliminar();
+							}
+						});
+						btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
+						btnEliminar.setBackground(Color.WHITE);
+						
+								btnModificar = new JButton("Modificar");
+								btnModificar.setBounds(454, 534, 89, 39);
+								contentPane.add(btnModificar);
+								btnModificar.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										
+									}
+								});
+								btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
+								btnModificar.setBackground(Color.WHITE);
+								
+										btnCrear = new JButton("Crear");
+										btnCrear.setBounds(266, 534, 95, 39);
+										contentPane.add(btnCrear);
+										btnCrear.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent c) {
+												BtnGUCrear();
+											}
+										});
+										btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
+										btnCrear.setBackground(Color.WHITE);
+										
+												lblPassword = new JLabel("Contrase\u00F1a");
+												lblPassword.setBounds(577, 431, 188, 27);
+												contentPane.add(lblPassword);
+												lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+												lblPassword.setForeground(Color.WHITE);
+												lblPassword.setFont(new Font("Arial", Font.BOLD, 15));
 		
 	}
 

@@ -70,7 +70,7 @@ public class VentanaObservador extends JFrame {
 		btnEquipos.setForeground(Color.BLACK);
 		btnEquipos.setBackground(Color.WHITE);
 		btnEquipos.setFont(new Font("Arial", Font.BOLD, 20));
-		btnEquipos.setBounds(71, 185, 150, 77);
+		btnEquipos.setBounds(285, 534, 396, 77);
 		panelObservador.add(btnEquipos);
 		
 		btnJugadores = new JButton("Jugadores");
@@ -81,7 +81,7 @@ public class VentanaObservador extends JFrame {
 		});
 		btnJugadores.setBackground(Color.WHITE);
 		btnJugadores.setFont(new Font("Arial", Font.BOLD, 20));
-		btnJugadores.setBounds(286, 185, 150, 77);
+		btnJugadores.setBounds(285, 336, 396, 77);
 		panelObservador.add(btnJugadores);
 		
 		btnPartidos = new JButton("Partidos");
@@ -92,7 +92,7 @@ public class VentanaObservador extends JFrame {
 		});		
 		btnPartidos.setBackground(Color.WHITE);
 		btnPartidos.setFont(new Font("Arial", Font.BOLD, 20));
-		btnPartidos.setBounds(71, 301, 150, 76);
+		btnPartidos.setBounds(285, 435, 396, 77);
 		panelObservador.add(btnPartidos);
 		
 		btnTemporada = new JButton("Temporada");
@@ -103,7 +103,7 @@ public class VentanaObservador extends JFrame {
 		});	
 		btnTemporada.setBackground(Color.WHITE);
 		btnTemporada.setFont(new Font("Arial", Font.BOLD, 20));
-		btnTemporada.setBounds(287, 302, 150, 77);
+		btnTemporada.setBounds(285, 235, 396, 77);
 		panelObservador.add(btnTemporada);
 		
 		btnCSesion = new JButton("Cerrar Sesion");
@@ -115,7 +115,7 @@ public class VentanaObservador extends JFrame {
 		btnCSesion.setBackground(Color.WHITE);
 		btnCSesion.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCSesion.setForeground(Color.BLACK);
-		btnCSesion.setBounds(485, 437, 113, 38);
+		btnCSesion.setBounds(392, 722, 186, 38);
 		panelObservador.add(btnCSesion);
 		
 		lblFondo = new JLabel("");
