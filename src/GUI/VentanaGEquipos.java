@@ -85,97 +85,110 @@ public class VentanaGEquipos extends JFrame {
 		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblResultado.setFont(new Font("Arial", Font.BOLD, 15));
 		lblResultado.setForeground(SystemColor.controlLtHighlight);
-		lblResultado.setBounds(460, 340, 107, 27);
+		lblResultado.setBounds(751, 643, 107, 27);
 		panelFondo.add(lblResultado);
 
 		lblFecha = new JLabel("E-Mail");
 		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 15));
 		lblFecha.setForeground(SystemColor.controlLtHighlight);
-		lblFecha.setBounds(355, 340, 107, 27);
+		lblFecha.setBounds(553, 643, 107, 27);
 		panelFondo.add(lblFecha);
 
 		lblEquipo_1 = new JLabel("Municipio");
 		lblEquipo_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo_1.setFont(new Font("Arial", Font.BOLD, 15));
 		lblEquipo_1.setForeground(SystemColor.controlLtHighlight);
-		lblEquipo_1.setBounds(248, 339, 107, 28);
+		lblEquipo_1.setBounds(370, 642, 107, 28);
 		panelFondo.add(lblEquipo_1);
 
 		lblEquipo = new JLabel("Nombre");
 		lblEquipo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo.setForeground(SystemColor.controlLtHighlight);
 		lblEquipo.setFont(new Font("Arial", Font.BOLD, 15));
-		lblEquipo.setBounds(144, 340, 107, 28);
+		lblEquipo.setBounds(206, 642, 107, 28);
 		panelFondo.add(lblEquipo);
 
 		lblCodigo = new JLabel("C\u00F3digo");
 		lblCodigo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCodigo.setFont(new Font("Arial", Font.BOLD, 15));
 		lblCodigo.setForeground(SystemColor.controlLtHighlight);
-		lblCodigo.setBounds(40, 339, 107, 28);
+		lblCodigo.setBounds(71, 643, 107, 28);
 		panelFondo.add(lblCodigo);
 
 		lblGEquipos = new JLabel("Gesti\u00F3n de Equipos");
 		lblGEquipos.setForeground(SystemColor.textHighlightText);
 		lblGEquipos.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblGEquipos.setBounds(129, 44, 220, 39);
+		lblGEquipos.setBounds(71, 10, 220, 39);
 		panelFondo.add(lblGEquipos);
 
 		txtTj = new JTextField();
-		txtTj.setBounds(460, 368, 107, 28);
+		txtTj.setBounds(701, 670, 206, 28);
 		panelFondo.add(txtTj);
 		txtTj.setColumns(10);
 
 		txtEmail = new JTextField();
-		txtEmail.setBounds(355, 368, 107, 28);
+		txtEmail.setBounds(505, 670, 201, 28);
 		panelFondo.add(txtEmail);
 		txtEmail.setColumns(10);
 
 		txtMunicipio = new JTextField();
-		txtMunicipio.setBounds(248, 368, 110, 28);
+		txtMunicipio.setBounds(346, 670, 162, 28);
 		panelFondo.add(txtMunicipio);
 		txtMunicipio.setColumns(10);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(144, 368, 107, 28);
+		txtNombre.setBounds(176, 670, 170, 28);
 		panelFondo.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtCodigo = new JTextField();
-		txtCodigo.setBounds(40, 368, 107, 28);
+		txtCodigo.setBounds(57, 670, 121, 28);
 		panelFondo.add(txtCodigo);
 		txtCodigo.setColumns(10);
 
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEliminar.setBackground(Color.WHITE);
-		btnEliminar.setBounds(402, 408, 89, 39);
+		btnEliminar.setBounds(571, 713, 89, 39);
 		panelFondo.add(btnEliminar);
 
 		btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(256, 408, 89, 39);
+		btnModificar.setBounds(421, 713, 89, 39);
 		panelFondo.add(btnModificar);
 
 		btnCrear = new JButton("Crear");
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
-		btnCrear.setBounds(105, 408, 95, 39);
+		btnCrear.setBounds(269, 713, 95, 39);
 		panelFondo.add(btnCrear);
 
 		scpGEquipos = new JScrollPane();
-		scpGEquipos.setBounds(53, 99, 482, 183);
+		scpGEquipos.setBounds(57, 120, 850, 480);
 		panelFondo.add(scpGEquipos);
 
 		tblGEquipos = new JTable();
-		tblGEquipos.setShowHorizontalLines(false);
 		tblGEquipos.setRowSelectionAllowed(false);
-		tblGEquipos.setEnabled(false);
+		tblGEquipos.setShowHorizontalLines(false);
 		tblGEquipos.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null }, },
 				new String[] { "Codigo", "Nombre", "Municipio", "E-mail", "Terreno Juego" }));
 		tblGEquipos.getColumnModel().getColumn(0).setPreferredWidth(63);

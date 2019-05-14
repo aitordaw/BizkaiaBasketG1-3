@@ -79,78 +79,78 @@ public class VentanaGJugadores extends JFrame {
 
 		txtDNI = new JTextField();
 		txtDNI.setColumns(10);
-		txtDNI.setBounds(81, 501, 150, 28);
+		txtDNI.setBounds(87, 637, 150, 28);
 		panelFondo.add(txtDNI);
 
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(291, 501, 150, 28);
+		txtNombre.setBounds(297, 637, 150, 28);
 		panelFondo.add(txtNombre);
 
 		txtApellidos = new JTextField();
 		txtApellidos.setColumns(10);
-		txtApellidos.setBounds(511, 501, 150, 28);
+		txtApellidos.setBounds(517, 637, 150, 28);
 		panelFondo.add(txtApellidos);
 
 		txtEquipo = new JTextField();
 		txtEquipo.setColumns(10);
-		txtEquipo.setBounds(716, 501, 150, 28);
+		txtEquipo.setBounds(722, 637, 150, 28);
 		panelFondo.add(txtEquipo);
 
 		lblEquipo = new JLabel("Equipo");
 		lblEquipo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo.setForeground(Color.WHITE);
 		lblEquipo.setFont(new Font("Arial", Font.BOLD, 15));
-		lblEquipo.setBounds(738, 475, 107, 27);
+		lblEquipo.setBounds(744, 611, 107, 27);
 		panelFondo.add(lblEquipo);
 
 		lblApellidos = new JLabel("Apellidos");
 		lblApellidos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApellidos.setForeground(Color.WHITE);
 		lblApellidos.setFont(new Font("Arial", Font.BOLD, 15));
-		lblApellidos.setBounds(524, 474, 110, 28);
+		lblApellidos.setBounds(530, 610, 110, 28);
 		panelFondo.add(lblApellidos);
 
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNombre.setBounds(312, 474, 107, 28);
+		lblNombre.setBounds(318, 610, 107, 28);
 		panelFondo.add(lblNombre);
 
 		lblDni = new JLabel("DNI");
 		lblDni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDni.setForeground(Color.WHITE);
 		lblDni.setFont(new Font("Arial", Font.BOLD, 15));
-		lblDni.setBounds(71, 474, 107, 28);
+		lblDni.setBounds(108, 610, 107, 28);
 		panelFondo.add(lblDni);
 
 		lblGJugadores = new JLabel("Gesti\u00F3n de Jugadores");
 		lblGJugadores.setForeground(Color.WHITE);
 		lblGJugadores.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblGJugadores.setBounds(71, 11, 220, 39);
+		lblGJugadores.setBounds(71, 10, 220, 39);
 		panelFondo.add(lblGJugadores);
 
 		btnCrear = new JButton("Crear");
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
-		btnCrear.setBounds(216, 562, 95, 39);
+		btnCrear.setBounds(222, 698, 95, 39);
 		panelFondo.add(btnCrear);
 
 		btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(432, 562, 89, 39);
+		btnModificar.setBounds(438, 698, 89, 39);
 		panelFondo.add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEliminar.setBackground(Color.WHITE);
-		btnEliminar.setBounds(652, 562, 89, 39);
+		btnEliminar.setBounds(658, 698, 89, 39);
 		panelFondo.add(btnEliminar);
 
 		scpGJugadores = new JScrollPane();
-		scpGJugadores.setBounds(57, 112, 850, 353);
+		scpGJugadores.setBounds(57, 120, 850, 480);
 		panelFondo.add(scpGJugadores);
 
 		tblGJugadores = new JTable();

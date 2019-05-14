@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -45,7 +46,7 @@ public class VentanaGUsuarios extends JFrame {
 	DefaultTableModel tblgu = new DefaultTableModel();
 	
 	// Definir Arraylist
-	ArrayList<GUsuarios> usuarios;
+//	ArrayList<GUsuarios> usuarios;
 	
 	// Definir Necesidades Previas
 	int row;
@@ -71,7 +72,7 @@ public class VentanaGUsuarios extends JFrame {
 	 */
 	public VentanaGUsuarios() {
 		//Array
-		usuarios = new ArrayList<>();
+//		usuarios = new ArrayList<>();
 		// Diseño de la ventana
 		setResizable(false);
 		setTitle("Gesti\u00F3n Usuarios");
@@ -84,20 +85,20 @@ public class VentanaGUsuarios extends JFrame {
 
 		panelFondo = new JPanel();
 		panelFondo.setLayout(null);
-		panelFondo.setBounds(0, 0, 604, 481);
+		panelFondo.setBounds(0, 0, 974, 811);
 		contentPane.add(panelFondo);
 
 		lblGUsuarios = new JLabel("Gesti\u00F3n de Usuarios");
 		lblGUsuarios.setForeground(Color.WHITE);
 		lblGUsuarios.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblGUsuarios.setBounds(129, 44, 220, 39);
+		lblGUsuarios.setBounds(71, 10, 220, 39);
 		panelFondo.add(lblGUsuarios);
 
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNombre.setBounds(216, 425, 188, 28);
+		lblNombre.setBounds(330, 562, 188, 28);
 		panelFondo.add(lblNombre);
 
 		btnVolver = new JButton("");
@@ -106,6 +107,13 @@ public class VentanaGUsuarios extends JFrame {
 				BtnVolver();
 			}
 		});
+		
+		lblPassword = new JLabel("Contrase\u00F1a");
+		lblPassword.setBounds(330, 670, 188, 27);
+		panelFondo.add(lblPassword);
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setForeground(Color.WHITE);
+		lblPassword.setFont(new Font("Arial", Font.BOLD, 15));
 		btnVolver.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/arrowleft.png")));
 		btnVolver.setFont(new Font("Arial", Font.BOLD, 20));
 		btnVolver.setBackground(Color.WHITE);
@@ -114,12 +122,17 @@ public class VentanaGUsuarios extends JFrame {
 
 		txtUsuario = new JTextField();
 		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(216, 453, 188, 28);
+		txtUsuario.setBounds(330, 595, 188, 28);
 		panelFondo.add(txtUsuario);
+		
+		txtPassword = new JTextField();
+		txtPassword.setBounds(330, 700, 188, 28);
+		panelFondo.add(txtPassword);
+		txtPassword.setColumns(10);
 
 		scpGUsuarios = new JScrollPane();
 		scpGUsuarios.setEnabled(false);
-		scpGUsuarios.setBounds(53, 99, 845, 257);
+		scpGUsuarios.setBounds(57, 112, 850, 395);
 		panelFondo.add(scpGUsuarios);
 
 		tblGUsuarios = new JTable();
@@ -131,56 +144,44 @@ public class VentanaGUsuarios extends JFrame {
 		tblgu.addColumn("Usuario");
 		tblgu.addColumn("Contraseña");
 		tblGUsuarios.setModel(tblgu);
-
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/Fondo-tr.png")));
-		lblFondo.setBounds(0, 0, 974, 811);
-		panelFondo.add(lblFondo);
-		
-				txtPassword = new JTextField();
-				txtPassword.setBounds(577, 453, 188, 28);
-				contentPane.add(txtPassword);
-				txtPassword.setColumns(10);
-				
-						btnEliminar = new JButton("Eliminar");
-						btnEliminar.setBounds(628, 534, 89, 39);
-						contentPane.add(btnEliminar);
-						btnEliminar.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								BtnEliminar();
-							}
-						});
-						btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
-						btnEliminar.setBackground(Color.WHITE);
-						
-								btnModificar = new JButton("Modificar");
-								btnModificar.setBounds(454, 534, 89, 39);
-								contentPane.add(btnModificar);
-								btnModificar.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										
-									}
-								});
-								btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
-								btnModificar.setBackground(Color.WHITE);
 								
-										btnCrear = new JButton("Crear");
-										btnCrear.setBounds(266, 534, 95, 39);
-										contentPane.add(btnCrear);
-										btnCrear.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent c) {
-												BtnGUCrear();
-											}
-										});
-										btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
-										btnCrear.setBackground(Color.WHITE);
+		btnCrear = new JButton("Crear");
+		btnCrear.setBounds(621, 539, 95, 39);
+		panelFondo.add(btnCrear);
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent c) {
+					BtnGUCrear();
+					}
+			});
+		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
+		btnCrear.setBackground(Color.WHITE);
+				
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(621, 732, 95, 39);
+		panelFondo.add(btnEliminar);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					BtnEliminar();
+				}
+			});
+		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
+		btnEliminar.setBackground(Color.WHITE);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(621, 639, 95, 39);
+		panelFondo.add(btnModificar);
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 										
-												lblPassword = new JLabel("Contrase\u00F1a");
-												lblPassword.setBounds(577, 431, 188, 27);
-												contentPane.add(lblPassword);
-												lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-												lblPassword.setForeground(Color.WHITE);
-												lblPassword.setFont(new Font("Arial", Font.BOLD, 15));
+					}
+				});
+		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
+		btnModificar.setBackground(Color.WHITE);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/Fondo-tr.png")));
+				lblFondo.setBounds(0, 0, 974, 811);
+				panelFondo.add(lblFondo);
 		
 	}
 
@@ -191,19 +192,19 @@ public class VentanaGUsuarios extends JFrame {
 		String password = txtPassword.getText();
 		
 		// Añadir datos al arraylist
-		usuarios.add(new GUsuarios(user,password));
+//		usuarios.add(new GUsuarios(user,password));
 		
 		// Poner el contador de filas a 0
 		tblgu.setRowCount(0);
 		
 		// Insertar los datos
-		for (int i =0; i < usuarios.size(); i++) {
-			Object[] per = {usuarios.get(i).usuario, usuarios.get(i).password};
-			tblgu.addRow(per);
-		}
+//		for (int i =0; i < usuarios.size(); i++) {
+//			Object[] per = {usuarios.get(i).usuario, usuarios.get(i).password};
+//			tblgu.addRow(per);
+//		}
 		// Limpiar campos
-		clearField();
-	}
+//		clearField();
+}
 	
 	private void BtnEliminar() {
 		// Recoger los datos de los campos a eliminar

@@ -82,85 +82,85 @@ public class VentanaGPartidos extends JFrame {
 		lblGPartidos = new JLabel("Gesti\u00F3n de Partidos");
 		lblGPartidos.setForeground(Color.WHITE);
 		lblGPartidos.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblGPartidos.setBounds(129, 44, 220, 39);
+		lblGPartidos.setBounds(71, 10, 220, 39);
 		panelFondo.add(lblGPartidos);
 
 		lblCodigo = new JLabel("C\u00F3digo");
 		lblCodigo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCodigo.setForeground(Color.WHITE);
 		lblCodigo.setFont(new Font("Arial", Font.BOLD, 15));
-		lblCodigo.setBounds(32, 338, 107, 28);
+		lblCodigo.setBounds(82, 642, 107, 28);
 		panelFondo.add(lblCodigo);
 
 		lblEquipo1 = new JLabel("Equipo 1");
 		lblEquipo1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo1.setForeground(Color.WHITE);
 		lblEquipo1.setFont(new Font("Arial", Font.BOLD, 15));
-		lblEquipo1.setBounds(137, 338, 106, 28);
+		lblEquipo1.setBounds(254, 642, 106, 28);
 		panelFondo.add(lblEquipo1);
 
 		lblEquipo2 = new JLabel("Equipo 2");
 		lblEquipo2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo2.setForeground(Color.WHITE);
 		lblEquipo2.setFont(new Font("Arial", Font.BOLD, 15));
-		lblEquipo2.setBounds(242, 338, 107, 28);
+		lblEquipo2.setBounds(421, 642, 107, 28);
 		panelFondo.add(lblEquipo2);
 
 		lblFecha = new JLabel("Fecha");
 		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFecha.setForeground(Color.WHITE);
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 15));
-		lblFecha.setBounds(347, 339, 107, 27);
+		lblFecha.setBounds(577, 643, 107, 27);
 		panelFondo.add(lblFecha);
 
 		lblResultado = new JLabel("Resultado");
 		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblResultado.setForeground(Color.WHITE);
 		lblResultado.setFont(new Font("Arial", Font.BOLD, 15));
-		lblResultado.setBounds(452, 338, 107, 27);
+		lblResultado.setBounds(761, 643, 107, 27);
 		panelFondo.add(lblResultado);
 
 		txtCodigo = new JTextField();
 		txtCodigo.setColumns(10);
-		txtCodigo.setBounds(32, 368, 107, 28);
+		txtCodigo.setBounds(56, 672, 166, 28);
 		panelFondo.add(txtCodigo);
 
 		txtEquipo1 = new JTextField();
 		txtEquipo1.setColumns(10);
-		txtEquipo1.setBounds(136, 368, 107, 28);
+		txtEquipo1.setBounds(222, 672, 166, 28);
 		panelFondo.add(txtEquipo1);
 
 		txtEquipo2 = new JTextField();
 		txtEquipo2.setColumns(10);
-		txtEquipo2.setBounds(240, 368, 107, 28);
+		txtEquipo2.setBounds(386, 672, 172, 28);
 		panelFondo.add(txtEquipo2);
 
 		txtFecha = new JTextField();
 		txtFecha.setColumns(10);
-		txtFecha.setBounds(347, 368, 107, 28);
+		txtFecha.setBounds(558, 672, 166, 28);
 		panelFondo.add(txtFecha);
 
 		txtResultado = new JTextField();
 		txtResultado.setColumns(10);
-		txtResultado.setBounds(452, 368, 107, 28);
+		txtResultado.setBounds(724, 672, 183, 28);
 		panelFondo.add(txtResultado);
 
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEliminar.setBackground(Color.WHITE);
-		btnEliminar.setBounds(402, 408, 89, 39);
+		btnEliminar.setBounds(597, 712, 89, 39);
 		panelFondo.add(btnEliminar);
 
 		btnModificar = new JButton("Modificar");
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(256, 408, 89, 39);
+		btnModificar.setBounds(451, 712, 89, 39);
 		panelFondo.add(btnModificar);
 
 		btnCrear = new JButton("Crear");
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
-		btnCrear.setBounds(105, 408, 95, 39);
+		btnCrear.setBounds(300, 712, 95, 39);
 		panelFondo.add(btnCrear);
 
 		btnVolver = new JButton("");
@@ -176,13 +176,27 @@ public class VentanaGPartidos extends JFrame {
 		panelFondo.add(btnVolver);
 
 		scpGPartidos = new JScrollPane();
-		scpGPartidos.setBounds(53, 99, 499, 183);
+		scpGPartidos.setBounds(57, 120, 850, 480);
 		panelFondo.add(scpGPartidos);
 
 		tblGPartidos = new JTable();
 		tblGPartidos.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null }, },
 				new String[] { "Codigo", "Equipo1", "Equipo2", "Fecha", "Resultado" }));
 		tblGPartidos.setEnabled(false);
