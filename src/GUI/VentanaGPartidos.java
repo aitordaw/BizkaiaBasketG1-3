@@ -160,7 +160,7 @@ public class VentanaGPartidos extends JFrame {
 		btnCrear = new JButton("Crear");
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
-		btnCrear.setBounds(300, 712, 95, 39);
+		btnCrear.setBounds(299, 711, 95, 39);
 		panelFondo.add(btnCrear);
 
 		btnVolver = new JButton("");
