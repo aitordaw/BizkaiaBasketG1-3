@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
 public class VentanaGJugadores extends JFrame {
 
@@ -43,6 +44,7 @@ public class VentanaGJugadores extends JFrame {
 	private JButton btnModificar;
 	private JButton btnCrear;
 	private JButton btnVolver;
+	private JComboBox comboEquipo;
 
 	/**
 	 * Launch the application.
@@ -211,6 +213,10 @@ public class VentanaGJugadores extends JFrame {
 		btnVolver.setBackground(Color.WHITE);
 		btnVolver.setBounds(0, 0, 48, 36);
 		panelFondo.add(btnVolver);
+		
+		comboEquipo = new JComboBox();
+		comboEquipo.setBounds(804, 698, 166, 28);
+		panelFondo.add(comboEquipo);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaGJugadores.class.getResource("/IMG/Fondo-tr.png")));
