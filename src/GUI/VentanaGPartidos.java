@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
 public class VentanaGPartidos extends JFrame {
 
@@ -45,6 +46,8 @@ public class VentanaGPartidos extends JFrame {
 	private JButton btnModificar;
 	private JButton btnCrear;
 	private JButton btnVolver;
+	private JComboBox comboLiga;
+	private JComboBox comboEquipoVis;
 
 	/**
 	 * Launch the application.
@@ -92,14 +95,14 @@ public class VentanaGPartidos extends JFrame {
 		lblCodigo.setBounds(82, 642, 107, 28);
 		panelFondo.add(lblCodigo);
 
-		lblEquipo1 = new JLabel("Equipo 1");
+		lblEquipo1 = new JLabel("Eq. Local");
 		lblEquipo1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo1.setForeground(Color.WHITE);
 		lblEquipo1.setFont(new Font("Arial", Font.BOLD, 15));
 		lblEquipo1.setBounds(254, 642, 106, 28);
 		panelFondo.add(lblEquipo1);
 
-		lblEquipo2 = new JLabel("Equipo 2");
+		lblEquipo2 = new JLabel("Eq. Visitante");
 		lblEquipo2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEquipo2.setForeground(Color.WHITE);
 		lblEquipo2.setFont(new Font("Arial", Font.BOLD, 15));
@@ -205,6 +208,21 @@ public class VentanaGPartidos extends JFrame {
 		scpGPartidos.setViewportView(tblGPartidos);
 		tblGPartidos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblGPartidos.setBackground(new Color(233, 150, 122));
+		
+		comboLiga = new JComboBox();
+		comboLiga.setToolTipText("Liga");
+		comboLiga.setBounds(56, 611, 166, 28);
+		panelFondo.add(comboLiga);
+		
+		JComboBox comboEquipoLocal = new JComboBox();
+		comboEquipoLocal.setToolTipText("Liga");
+		comboEquipoLocal.setBounds(222, 611, 166, 28);
+		panelFondo.add(comboEquipoLocal);
+		
+		comboEquipoVis = new JComboBox();
+		comboEquipoVis.setToolTipText("Liga");
+		comboEquipoVis.setBounds(386, 611, 172, 28);
+		panelFondo.add(comboEquipoVis);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaGPartidos.class.getResource("/IMG/Fondo-tr.png")));
