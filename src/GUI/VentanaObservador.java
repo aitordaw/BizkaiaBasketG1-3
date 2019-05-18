@@ -1,10 +1,12 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import BLL.AbrirVentanas;
+import BLL.ConectorBLL;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,10 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class VentanaObservador extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelObservador;
@@ -27,22 +25,6 @@ public class VentanaObservador extends JFrame {
 	private JButton btnTemporada;
 	private JButton btnCSesion;
 	private JLabel lblFondo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -154,10 +136,9 @@ public class VentanaObservador extends JFrame {
 	}
 	
 	private void BtnCerrar() {
-
-		BLL.AbrirVentanas.cerrar();
+		ConectorBLL.CerrarSesion();
+		AbrirVentanas.veLogin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
-
 	}
 }
 

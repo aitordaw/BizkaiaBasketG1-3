@@ -1,11 +1,10 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
@@ -15,11 +14,9 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class VentanaLogin extends JFrame implements ActionListener {
+import BLL.ConectorBLL;
 
-	/**
-	 * 
-	 */
+public class VentanaLogin extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -29,24 +26,6 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	private JLabel lblPassword;
 	private JLabel lblFondo;
 	private JLabel lblMensaje;
-	protected static String cusuario;
-	protected static String usuario;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -111,40 +90,33 @@ public class VentanaLogin extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent o) {
 		// TODO Auto-generated method stub
-		usuario = txtUsuario.getText();
+		String usuario = txtUsuario.getText();
 		String password = new String(pwdPassword.getPassword());
-		String mensaje = "";
-
-		if (usuario.equals("Admin") && password.equals("admin")) {
-			// si los datos coinciden
-			cusuario = "a";
-			BLL.AbrirVentanas.vePAdmin();
-			dispose(); // Elimina el objeto en memoria (cierra la ventana)
+		
+		try {
+			switch(ConectorBLL.IniciarSesion(usuario, password)) {
+			case ADMINISTRADOR:
+				BLL.AbrirVentanas.vePAdmin();
+				dispose();
+				break;
+			case ERRONEO:
+				lblMensaje.setText("Usuario y/o Contraseña incorrectos.");
+				break;
+			case OBSERVADOR:
+				BLL.AbrirVentanas.vePObservador();
+				dispose(); 
+				break;
+			case USUARIO:
+				BLL.AbrirVentanas.vePUsuario();
+				dispose();
+				break;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 		}
-
-		else if (usuario.equals("Usuario") && password.equals("usuario")) {
-			// si los datos coinciden
-			cusuario = "u";
-			BLL.AbrirVentanas.vePUsuario();
-			dispose(); // Elimina el objeto en memoria (cierra la ventana)
-		}
-
-		else if (usuario.equals("Observador") && password.equals("")) {
-			// si los datos coinciden
-			cusuario = "o";
-			BLL.AbrirVentanas.vePObservador();
-			dispose(); // Elimina el objeto en memoria (cierra la ventana)
-		}
-
-		else {
-			// si los datos no coinciden
-			mensaje = "Usuario y/o Contraseña incorrectos.";
-		}
-		lblMensaje.setText(mensaje);
-	}
-
-	public static String getUsuario() {
-
-		return usuario;
 	}
 }

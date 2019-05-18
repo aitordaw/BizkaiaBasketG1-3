@@ -1,7 +1,5 @@
 package GUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -10,8 +8,6 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -22,10 +18,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
 public class VentanaGUsuarios extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelFondo;
@@ -51,22 +43,6 @@ public class VentanaGUsuarios extends JFrame {
 	// Definir Necesidades Previas
 	int row;
 	
-		/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

@@ -1,8 +1,6 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -17,14 +15,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import BLL.ConectorBLL;
+import DAL.Roles;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
 public class VentanaGPartidos extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelFondo;
@@ -48,22 +46,6 @@ public class VentanaGPartidos extends JFrame {
 	private JButton btnVolver;
 	private JComboBox comboLiga;
 	private JComboBox comboEquipoVis;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -232,13 +214,12 @@ public class VentanaGPartidos extends JFrame {
 
 	private void BtnVolver() {
 
-		if (VentanaLogin.cusuario.equals("a")) {
+		if (ConectorBLL.GetRolActual() == Roles.ADMINISTRADOR) {
 			BLL.AbrirVentanas.vePAdmin();
 			dispose(); // Elimina el objeto en memoria (cierra la ventana)
-		} else if (VentanaLogin.cusuario.equals("u")) {
+		} else if (ConectorBLL.GetRolActual() == Roles.USUARIO) {
 			BLL.AbrirVentanas.vePUsuario();
 			dispose(); // Elimina el objeto en memoria (cierra la ventana)
 		}
-
 	}
 }

@@ -1,8 +1,6 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -16,13 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+
+import BLL.ConectorBLL;
+import DAL.Roles;
+
 import javax.swing.JScrollPane;
 
 public class VentanaVEquipos extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelVEquipos;
@@ -31,22 +29,6 @@ public class VentanaVEquipos extends JFrame {
 	private JTable tblVEquipos;
 	private JLabel lblFondo;
 	private JScrollPane scpVEquipos;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -118,10 +100,10 @@ public class VentanaVEquipos extends JFrame {
 
 	private void BtnVolver() {
 
-		if (VentanaLogin.cusuario.equals("o")) {
+		if (ConectorBLL.GetRolActual() == Roles.OBSERVADOR) {
 			BLL.AbrirVentanas.vePObservador();
 			dispose(); // Elimina el objeto en memoria (cierra la ventana)
-		} else if (VentanaLogin.cusuario.equals("u")) {
+		} else if (ConectorBLL.GetRolActual() == Roles.USUARIO) {
 			BLL.AbrirVentanas.vePUsuario();
 			dispose(); // Elimina el objeto en memoria (cierra la ventana)
 		}

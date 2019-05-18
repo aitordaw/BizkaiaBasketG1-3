@@ -24,7 +24,7 @@ public class AbrirVentanas {
 	public static void vePUsuario() {
 		VentanaUsuario vePUsuario = new VentanaUsuario();
 		vePUsuario.setVisible(true); // Mostrar la pantalla de círculo
-		vePUsuario.setTitle("Bienvenido " + VentanaLogin.getUsuario());
+		vePUsuario.setTitle("Bienvenido " + ConectorBLL.GetUsuarioActual());
 	}
 
 	public static void vePObservador() {
@@ -79,12 +79,11 @@ public class AbrirVentanas {
 		veTemporada.setVisible(true); // Mostrar la pantalla de círculo
 	}
 	
-	public static void cerrar() {
+	public static void veLogin() {
 		VentanaLogin veLogin = new VentanaLogin();
 
 		veLogin.setVisible(true); // Mostrar la pantalla de círculo
 	}
-	
 
 }
 

@@ -1,8 +1,11 @@
 package GUI;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import BLL.AbrirVentanas;
+import BLL.ConectorBLL;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -12,11 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VentanaAdmin extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JPanel panelAdmin;
 	private JButton btnEquipos;
@@ -25,23 +25,6 @@ public class VentanaAdmin extends JFrame {
 	private JButton btnUsuarios;
 	private JButton btnCSesion;
 	private JLabel lblFondo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					// CAMBIAR MAIN DESPUES DE PROBAR TODOS LOS BOTONES
-					VentanaAdmin frame = new VentanaAdmin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -156,10 +139,9 @@ public class VentanaAdmin extends JFrame {
 	}
 	
 	private void BtnCerrar() {
-
-		BLL.AbrirVentanas.cerrar();
+		ConectorBLL.CerrarSesion();
+		AbrirVentanas.veLogin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
-
 	}
 
 }

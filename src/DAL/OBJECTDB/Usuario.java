@@ -1,10 +1,14 @@
 package DAL.OBJECTDB;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+
 import javax.persistence.*;
 
+import DAL.DataModel;
+import DAL.Roles;
+
 @Entity
-public class Usuario implements Serializable {
+public class Usuario extends ObjectDbDataModel {
 	private static final long serialVersionUID = 2871418349717969581L;
 
 	@Id
@@ -12,13 +16,18 @@ public class Usuario implements Serializable {
 	private long id;
 	private String usuario;
 	private String password;
+	private Roles rol;
 	
 	public Usuario() {
+		super();
+		campoBusqueda = "usuario";
 	}
 	
-	public Usuario(String usuario, String password) {
+	public Usuario(String usuario, String password, Roles rol) {
+		this();
 		this.usuario = usuario;
 		this.password = password;
+		this.rol = rol;
 	}
 
 	public String getUsuario() {
@@ -35,5 +44,22 @@ public class Usuario implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Roles getRol() {
+		return rol;
+	}
+
+	public void setRol(Roles rol) {
+		this.rol = rol;
+	}
+	
+	@Override
+	public ArrayList<DataModel> crearPorDefecto() {
+		ArrayList<DataModel> result = new ArrayList<DataModel>();
+		
+			result.add(new Usuario("admin", "admin", Roles.ADMINISTRADOR));
+		
+		return result;
 	}
 }

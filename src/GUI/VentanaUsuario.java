@@ -1,10 +1,12 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import BLL.AbrirVentanas;
+import BLL.ConectorBLL;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -14,10 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VentanaUsuario extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelUsuario;
@@ -26,22 +24,6 @@ public class VentanaUsuario extends JFrame {
 	private JButton btnCSesion;
 	private JButton btnEquipos;
 	private JLabel lblFondo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -136,10 +118,9 @@ public class VentanaUsuario extends JFrame {
 	}
 	
 	private void BtnCerrar() {
-
-		BLL.AbrirVentanas.cerrar();
+		ConectorBLL.CerrarSesion();
+		AbrirVentanas.veLogin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
-
 	}
 	
 }

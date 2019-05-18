@@ -1,8 +1,6 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -19,10 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 public class VentanaVPartidos extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tblVPartidos;
@@ -31,22 +25,6 @@ public class VentanaVPartidos extends JFrame {
 	private JLabel lblPartidos;
 	private JScrollPane scpVPartidos;
 	private JLabel lblFondo;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
