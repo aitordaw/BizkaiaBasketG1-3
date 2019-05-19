@@ -1,5 +1,7 @@
 package BLL;
 
+import DAL.ConectorDAL;
+import DAL.DataModel;
 import DAL.Roles;
 import DAL.OBJECTDB.Usuario;
 
@@ -16,7 +18,7 @@ public class ConectorBLL {
 		}
 		else {
 			usuarioActual = null;
-			return Roles.ERRONEO;
+			return Roles.BLOQUEADO;
 		}
 	}
 	
@@ -34,11 +36,43 @@ public class ConectorBLL {
 			return usuarioActual.getRol();
 		}
 		else {
-			return Roles.ERRONEO;
+			return Roles.BLOQUEADO;
 		}
 	}
 	
 	public static void CerrarSesion() {
 		usuarioActual = null;
+	}
+
+	public static void ModificarUsuario(String original, String usuario, String password, Roles rol) throws Exception {
+		if (original.equals(usuarioActual.getUsuario()) && (!usuario.equals(original) || rol != usuarioActual.getRol())) {
+			throw new Exception("No puedes modificar tu nombre ni tu rol.");
+		}
+		
+		UsuariosBLL.GetActual().Editar(original, usuario, password, rol);
+	}
+
+	public static void CrearUsuario(String usuario, String password, Roles rol) throws Exception {
+		UsuariosBLL.GetActual().Crear(usuario, password, rol);
+	}
+
+	public static void BorrarUsuario(Usuario usuario) throws Exception {
+		if (usuario.getUsuario().equals(usuarioActual.getUsuario())) {
+			throw new Exception("No puedes borrar tu usuario");
+		}
+		else if (usuario.getRol() == Roles.ADMINISTRADOR){
+			 int conteo = 0;
+			 for (DataModel user : ConectorDAL.GetActual().getTodo(new Usuario())) {
+				 if (((Usuario)user).getRol() == Roles.ADMINISTRADOR) {
+					 conteo++;
+				 }
+			 }
+			 
+			 if (conteo < 2) {
+					throw new Exception("Tiene que haber al menus 1 ADMINISTRADOR.");
+			 }
+		}
+		
+		UsuariosBLL.GetActual().Borrar(usuario.getUsuario());
 	}
 }

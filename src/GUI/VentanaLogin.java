@@ -73,11 +73,12 @@ public class VentanaLogin extends JFrame implements ActionListener {
 		panelLogin.add(txtUsuario);
 
 		lblMensaje = new JLabel("");
+		lblMensaje.setForeground(Color.WHITE);
 		lblMensaje.setFont(new Font("Arial", Font.BOLD, 20));
 		lblMensaje.setEnabled(false);
 		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMensaje.setBackground(Color.GRAY);
-		lblMensaje.setBounds(60, 421, 466, 33);
+		lblMensaje.setBounds(12, 735, 950, 33);
 		panelLogin.add(lblMensaje);
 
 		lblFondo = new JLabel("");
@@ -99,8 +100,8 @@ public class VentanaLogin extends JFrame implements ActionListener {
 				BLL.AbrirVentanas.vePAdmin();
 				dispose();
 				break;
-			case ERRONEO:
-				lblMensaje.setText("Usuario y/o Contraseña incorrectos.");
+			case BLOQUEADO:
+				lblMensaje.setText("Usuario y/o Contraseña incorrectos o usuario bloqueado.");
 				break;
 			case OBSERVADOR:
 				BLL.AbrirVentanas.vePObservador();

@@ -4,5 +4,5 @@ public enum Roles {
 	ADMINISTRADOR,
 	USUARIO,
 	OBSERVADOR,
-	ERRONEO
+	BLOQUEADO
 }

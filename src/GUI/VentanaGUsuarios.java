@@ -11,10 +11,18 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import BLL.ConectorBLL;
+import BLL.UsuariosTableModel;
+import DAL.Roles;
+import DAL.OBJECTDB.Usuario;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
@@ -34,15 +42,11 @@ public class VentanaGUsuarios extends JFrame {
 	private JLabel lblFondo;
 	private JButton btnVolver;
 	private JScrollPane scpGUsuarios;
-
-	// Definir la tabla
-	DefaultTableModel tblgu = new DefaultTableModel();
-	
-	// Definir Arraylist
-//	ArrayList<GUsuarios> usuarios;
-	
+	private JComboBox comboBox;
+		
 	// Definir Necesidades Previas
 	int row;
+	private JLabel lblMensaje;
 	
 	/**
 	 * Create the frame.
@@ -118,10 +122,27 @@ public class VentanaGUsuarios extends JFrame {
 		scpGUsuarios.setViewportView(tblGUsuarios);
 		tblGUsuarios.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblGUsuarios.setBackground(new Color(233, 150, 122));
-		tblgu.addColumn("Usuario");
-		tblgu.addColumn("Contraseña");
-		tblgu.addColumn("Rol");
-		tblGUsuarios.setModel(tblgu);
+		tblGUsuarios.setModel(new UsuariosTableModel());
+		// Listener para comprobar si hay alguna fila seleccionada
+		tblGUsuarios.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				try {
+					Usuario user = ((UsuariosTableModel)tblGUsuarios.getModel()).getElementoEn(tblGUsuarios.getSelectedRow());
+					
+					if (user == null) // SI no hay fila seleccionada o no se encuentra el usuario
+					{
+						clearFields();
+					} else {
+						setFields(user.getUsuario(), user.getPassword(), user.getRol());
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+			}
+		});
 								
 		btnCrear = new JButton("Crear");
 		btnCrear.setBounds(621, 539, 95, 39);
@@ -150,7 +171,16 @@ public class VentanaGUsuarios extends JFrame {
 		panelFondo.add(btnModificar);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-										
+						if (tblGUsuarios.getSelectedRow() != -1 && validarFormulario()) {
+							try {
+								Usuario user = ((UsuariosTableModel)tblGUsuarios.getModel()).getElementoEn(tblGUsuarios.getSelectedRow());
+								
+								ConectorBLL.ModificarUsuario(user.getUsuario(), txtUsuario.getText(), txtPassword.getText(), (Roles)comboBox.getSelectedItem());
+								((UsuariosTableModel)tblGUsuarios.getModel()).Actualizar();
+							} catch (Exception ex) {
+								JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
+						}
 					}
 				});
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
@@ -163,9 +193,16 @@ public class VentanaGUsuarios extends JFrame {
 				lblRol.setBounds(330, 678, 188, 27);
 				panelFondo.add(lblRol);
 				
-				JComboBox comboBox = new JComboBox();
+				comboBox = new JComboBox(Roles.values());
+				comboBox.setSelectedItem(null);
 				comboBox.setBounds(330, 718, 188, 28);
 				panelFondo.add(comboBox);
+				
+				lblMensaje = new JLabel("");
+				lblMensaje.setForeground(Color.WHITE);
+				lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblMensaje.setBounds(57, 759, 461, 39);
+				panelFondo.add(lblMensaje);
 		
 				lblFondo = new JLabel("");
 				lblFondo.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/Fondo-tr.png")));
@@ -176,33 +213,25 @@ public class VentanaGUsuarios extends JFrame {
 
 	
 	private void BtnGUCrear() {
-		// Necesidades previas
-		String user = txtUsuario.getText();
-		String password = txtPassword.getText();
-		
-		// Añadir datos al arraylist
-//		usuarios.add(new GUsuarios(user,password));
-		
-		// Poner el contador de filas a 0
-		tblgu.setRowCount(0);
-		
-		// Insertar los datos
-//		for (int i =0; i < usuarios.size(); i++) {
-//			Object[] per = {usuarios.get(i).usuario, usuarios.get(i).password};
-//			tblgu.addRow(per);
-//		}
-		// Limpiar campos
-//		clearField();
+	try {
+		if (validarFormulario()) {
+			ConectorBLL.CrearUsuario(txtUsuario.getText(), txtPassword.getText(), (Roles)comboBox.getSelectedItem());
+			((UsuariosTableModel)tblGUsuarios.getModel()).Actualizar();
+		}
+	} catch (Exception ex) {
+		JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+	}
 }
 	
 	private void BtnEliminar() {
-		// Recoger los datos de los campos a eliminar
-		int eli = tblGUsuarios.getSelectedRow();
-		if (eli >= 0) {
-			tblgu.removeRow(eli);
-		}
-		else {
-			JOptionPane.showMessageDialog(null,"No hay datos a eliminar");
+		try {
+			Usuario usuario = ((UsuariosTableModel)tblGUsuarios.getModel()).getElementoEn(tblGUsuarios.getSelectedRow());
+			if (usuario != null) {
+				ConectorBLL.BorrarUsuario(usuario);
+				((UsuariosTableModel)tblGUsuarios.getModel()).Actualizar();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -211,8 +240,31 @@ public class VentanaGUsuarios extends JFrame {
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
 	}
 	
-	private void clearField() {
-		txtUsuario.setText("");
+	private void clearFields() {
+		txtUsuario.setText(""); // ELiminamos el contenido de la entrada de usuario
 		txtPassword.setText("");
+		comboBox.setSelectedItem(null);
+	}
+	
+	private void setFields(String usuario, String password, Roles rol) {
+		txtUsuario.setText(usuario); // ELiminamos el contenido de la entrada de usuario
+		txtPassword.setText(password);
+		comboBox.setSelectedItem(rol);
+	}
+	
+	private boolean validarFormulario() {
+		lblMensaje.setText("");
+		if(txtUsuario.getText().isEmpty()) {
+			lblMensaje.setText("El nombre de usuario es obligatorio.");
+		} else if (comboBox.getSelectedItem() == null) {
+			lblMensaje.setText("El rol de usuario es obligatorio.");
+		} else if (comboBox.getSelectedItem() != Roles.OBSERVADOR && txtPassword.getText().isEmpty()) {
+			lblMensaje.setText("La contraseña es obligatoria.");
+		}
+		else {
+			return true;
+		}
+		
+		return false;
 	}
 }
