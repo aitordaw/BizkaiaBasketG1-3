@@ -1,5 +1,6 @@
 package GUI;
 
+import BLL.AbrirVentanas;
 import DAL.ConectorDAL;
 
 public class BizkaiaBasket {
@@ -9,14 +10,13 @@ public class BizkaiaBasket {
 		ConectorDAL.Iniciar("localhost/bizkaiabasket", "root", "", "localhost/bizkaiaBasket.odb", "admin", "admin");
 
 		try {
-			VentanaLogin frame = new VentanaLogin();
-			frame.setVisible(true);
+			AbrirVentanas.veLogin();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		//
-		//----------------TEST ONLY---------------------
+		// PRUEBAS
 		/*try {
 			JOptionPane.showMessageDialog(null, UsuariosBLL.GetActual().Get("admin").toString(), "OK", JOptionPane.INFORMATION_MESSAGE);
 			

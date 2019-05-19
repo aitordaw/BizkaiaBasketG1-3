@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 
 public class VentanaGUsuarios extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -74,7 +75,7 @@ public class VentanaGUsuarios extends JFrame {
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-		lblNombre.setBounds(330, 562, 188, 28);
+		lblNombre.setBounds(330, 515, 188, 28);
 		panelFondo.add(lblNombre);
 
 		btnVolver = new JButton("");
@@ -85,7 +86,7 @@ public class VentanaGUsuarios extends JFrame {
 		});
 		
 		lblPassword = new JLabel("Contrase\u00F1a");
-		lblPassword.setBounds(330, 670, 188, 27);
+		lblPassword.setBounds(330, 597, 188, 27);
 		panelFondo.add(lblPassword);
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setForeground(Color.WHITE);
@@ -98,11 +99,11 @@ public class VentanaGUsuarios extends JFrame {
 
 		txtUsuario = new JTextField();
 		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(330, 595, 188, 28);
+		txtUsuario.setBounds(330, 556, 188, 28);
 		panelFondo.add(txtUsuario);
 		
 		txtPassword = new JTextField();
-		txtPassword.setBounds(330, 700, 188, 28);
+		txtPassword.setBounds(330, 637, 188, 28);
 		panelFondo.add(txtPassword);
 		txtPassword.setColumns(10);
 
@@ -119,6 +120,7 @@ public class VentanaGUsuarios extends JFrame {
 		tblGUsuarios.setBackground(new Color(233, 150, 122));
 		tblgu.addColumn("Usuario");
 		tblgu.addColumn("Contraseña");
+		tblgu.addColumn("Rol");
 		tblGUsuarios.setModel(tblgu);
 								
 		btnCrear = new JButton("Crear");
@@ -153,6 +155,17 @@ public class VentanaGUsuarios extends JFrame {
 				});
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
+				
+				JLabel lblRol = new JLabel("Rol");
+				lblRol.setHorizontalAlignment(SwingConstants.CENTER);
+				lblRol.setForeground(Color.WHITE);
+				lblRol.setFont(new Font("Arial", Font.BOLD, 15));
+				lblRol.setBounds(330, 678, 188, 27);
+				panelFondo.add(lblRol);
+				
+				JComboBox comboBox = new JComboBox();
+				comboBox.setBounds(330, 718, 188, 28);
+				panelFondo.add(comboBox);
 		
 				lblFondo = new JLabel("");
 				lblFondo.setIcon(new ImageIcon(VentanaGUsuarios.class.getResource("/IMG/Fondo-tr.png")));
@@ -202,5 +215,4 @@ public class VentanaGUsuarios extends JFrame {
 		txtUsuario.setText("");
 		txtPassword.setText("");
 	}
-	
 }
