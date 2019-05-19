@@ -14,6 +14,7 @@ public class Usuario extends ObjectDbDataModel {
 	@Id
 	@GeneratedValue
 	private long id;
+	@Id
 	private String usuario;
 	private String password;
 	private Roles rol;

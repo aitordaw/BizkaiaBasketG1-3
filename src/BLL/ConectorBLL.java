@@ -3,6 +3,7 @@ package BLL;
 import DAL.ConectorDAL;
 import DAL.DataModel;
 import DAL.Roles;
+import DAL.MYSQL.Equipo;
 import DAL.OBJECTDB.Usuario;
 
 public class ConectorBLL {
@@ -48,12 +49,31 @@ public class ConectorBLL {
 		if (original.equals(usuarioActual.getUsuario()) && (!usuario.equals(original) || rol != usuarioActual.getRol())) {
 			throw new Exception("No puedes modificar tu nombre ni tu rol.");
 		}
-		
-		UsuariosBLL.GetActual().Editar(original, usuario, password, rol);
+		if (checkNombreValido(original, usuario)) {
+			
+			UsuariosBLL.GetActual().Editar(original, usuario, password, rol);
+		}
+	}
+	
+	private static boolean checkNombreValido(String original, String usuario) throws Exception {
+		int conteo = 0;
+		 for (DataModel user : ConectorDAL.GetActual().getTodo(new Usuario())) {
+			 if (((Usuario)user).getUsuario().equals(usuario)) {
+				 conteo++;
+			 }
+		 }
+		 
+		 if ((original == null || (original != null && !original.equals(usuario))) && conteo > 0) {
+				throw new Exception("Ya existe un usuario con este nombre.");
+		 }
+		 
+		 return true;
 	}
 
 	public static void CrearUsuario(String usuario, String password, Roles rol) throws Exception {
-		UsuariosBLL.GetActual().Crear(usuario, password, rol);
+		if (checkNombreValido(null, usuario)) {
+			UsuariosBLL.GetActual().Crear(usuario, password, rol);
+		}
 	}
 
 	public static void BorrarUsuario(Usuario usuario) throws Exception {
@@ -74,5 +94,17 @@ public class ConectorBLL {
 		}
 		
 		UsuariosBLL.GetActual().Borrar(usuario.getUsuario());
+	}
+
+	public static void CrearEquipo(String codigo, String nombre, String municipio, String email, String terreno) throws Exception {
+		EquiposBLL.GetActual().Crear(codigo, nombre, municipio, email, terreno);
+	}
+
+	public static void BorrarEquipo(Equipo equipo) throws Exception {
+		EquiposBLL.GetActual().Borrar(equipo.getCodigo());
+	}
+
+	public static void ModificarEquipo(String original,String codigo, String nombre, String municipio, String email, String terreno) throws Exception {
+			EquiposBLL.GetActual().Editar(original, codigo, nombre, municipio, email, terreno);
 	}
 }

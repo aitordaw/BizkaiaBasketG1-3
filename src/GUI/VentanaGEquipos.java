@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -14,9 +15,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import BLL.ConectorBLL;
+import BLL.EquiposTableModel;
+import BLL.UsuariosTableModel;
+import DAL.Roles;
+import DAL.MYSQL.Equipo;
+import DAL.OBJECTDB.Usuario;
+
 import javax.swing.SwingConstants;
 
 public class VentanaGEquipos extends JFrame {
@@ -41,6 +52,7 @@ public class VentanaGEquipos extends JFrame {
 	private JButton btnCrear;
 	private JButton btnModificar;
 	private JButton btnVolver;
+	private JLabel lblMensaje;
 
 	/**
 	 * Create the frame.
@@ -126,18 +138,33 @@ public class VentanaGEquipos extends JFrame {
 		txtCodigo.setColumns(10);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnEliminar();
+			}
+		});
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEliminar.setBackground(Color.WHITE);
 		btnEliminar.setBounds(571, 713, 89, 39);
 		panelFondo.add(btnEliminar);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnModificar();
+			}
+		});
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
 		btnModificar.setBounds(421, 713, 89, 39);
 		panelFondo.add(btnModificar);
 
 		btnCrear = new JButton("Crear");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnCrear();
+			}
+		});
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
 		btnCrear.setBounds(269, 713, 95, 39);
@@ -148,27 +175,9 @@ public class VentanaGEquipos extends JFrame {
 		panelFondo.add(scpGEquipos);
 
 		tblGEquipos = new JTable();
-		tblGEquipos.setRowSelectionAllowed(false);
+		tblGEquipos.setRowSelectionAllowed(true);
 		tblGEquipos.setShowHorizontalLines(false);
-		tblGEquipos.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "Codigo", "Nombre", "Municipio", "E-mail", "Terreno Juego" }));
+		tblGEquipos.setModel(new EquiposTableModel());
 		tblGEquipos.getColumnModel().getColumn(0).setPreferredWidth(63);
 		tblGEquipos.getColumnModel().getColumn(1).setPreferredWidth(103);
 		tblGEquipos.getColumnModel().getColumn(2).setPreferredWidth(102);
@@ -177,6 +186,25 @@ public class VentanaGEquipos extends JFrame {
 		scpGEquipos.setViewportView(tblGEquipos);
 		tblGEquipos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblGEquipos.setBackground(new Color(233, 150, 122));
+		tblGEquipos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				try {
+					Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
+					
+					if (equipo == null) // SI no hay fila seleccionada o no se encuentra el usuario
+					{
+						clearFields();
+					} else {
+						setFields(equipo);
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+			}
+		});
 
 		btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
@@ -189,6 +217,12 @@ public class VentanaGEquipos extends JFrame {
 		btnVolver.setBackground(Color.WHITE);
 		btnVolver.setBounds(0, 0, 48, 36);
 		panelFondo.add(btnVolver);
+		lblMensaje = new JLabel("");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensaje.setForeground(Color.WHITE);
+		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMensaje.setBounds(57, 759, 850, 39);
+		panelFondo.add(lblMensaje);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaGEquipos.class.getResource("/IMG/Fondo-tr.png")));
@@ -196,10 +230,82 @@ public class VentanaGEquipos extends JFrame {
 		panelFondo.add(lblFondo);
 	}
 
+	protected void BtnModificar() {
+		if (tblGEquipos.getSelectedRow() != -1 && validarFormulario()) {
+			try {
+				Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
+				
+				ConectorBLL.ModificarEquipo(equipo.getCodigo(), txtCodigo.getText(), txtNombre.getText(), txtMunicipio.getText(), txtEmail.getText(), txtTj.getText());
+				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	protected void BtnCrear() {
+		try {
+			if (validarFormulario()) {
+				ConectorBLL.CrearEquipo(txtCodigo.getText(), txtNombre.getText(), txtMunicipio.getText(), txtEmail.getText(), txtTj.getText());
+				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private boolean validarFormulario() {
+		lblMensaje.setText("");
+		if(txtCodigo.getText().isEmpty()) {
+			lblMensaje.setText("El codigo de equipo es obligatorio.");
+		} else if (txtNombre.getText().isEmpty()) {
+			lblMensaje.setText("El nombre del equipo es obligatorio.");
+		} else if (txtMunicipio.getText().isEmpty()) {
+			lblMensaje.setText("El municipio es obligatorio.");
+		}else if (txtEmail.getText().isEmpty()) {
+			lblMensaje.setText("La dirección de e-mail es obligatoria.");
+		}else if (txtTj.getText().isEmpty()) {
+			lblMensaje.setText("El terreno de juego es obligatorio.");
+		}
+		else {
+			return true;
+		}
+		
+		return false;
+	}
+
 	private void BtnVolver() {
 
 		BLL.AbrirVentanas.vePAdmin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
 
+	}
+
+	private void BtnEliminar() {
+		try {
+			Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
+			if (equipo != null) {
+				ConectorBLL.BorrarEquipo(equipo);
+				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void setFields(Equipo equipo) {
+		txtCodigo.setText(equipo.getCodigo());
+		txtNombre.setText(equipo.getNombre());
+		txtMunicipio.setText(equipo.getMunicipio());
+		txtEmail.setText(equipo.getEmail());
+		txtTj.setText(equipo.getTerreno());
+	}
+
+	private void clearFields() {
+		txtCodigo.setText("");
+		txtNombre.setText("");
+		txtMunicipio.setText("");
+		txtEmail.setText("");
+		txtTj.setText("");
 	}
 }

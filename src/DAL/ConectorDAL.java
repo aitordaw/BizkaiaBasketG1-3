@@ -1,6 +1,10 @@
 package DAL;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
@@ -19,7 +23,6 @@ public class ConectorDAL {
 	private static ConectorDAL actual;
 	
 	// Almacenamos en variables las conexiones que usará nuestro conector.
-	@SuppressWarnings("unused")
 	private static Connection mySqlActual;
 	private static EntityManagerFactory objectDbFactoryActual;
 	
@@ -73,6 +76,19 @@ public class ConectorDAL {
 		}
 	}	
 	
+	private Connection getConexionMySqlActual() throws Exception {
+		if (mySqlActual == null) {
+			try {
+				mySqlActual = DriverManager.getConnection("jdbc:mysql://" + urlMySql, usuarioMySql, passwordMySql);
+			}
+			catch (SQLException e) {
+				throw new Exception("No se ha podido conectar con MySQL: \r\n" + e.getMessage());
+			}
+		}
+		
+		return mySqlActual;
+	}
+	
 	private DataModel getObjectDb(DataModel obj, String valorBusqueda) 
 			throws Exception {
 		return unicoObjectDb(obj, 
@@ -84,13 +100,46 @@ public class ConectorDAL {
 		return listaObjectDb(obj, String.format("SELECT p FROM %s p", obj.getClass().getSimpleName()));
 	}
 
-	private DataModel getMySql(DataModel obj, String valorBusqueda) {
-		return null;
+	private MySqlDataModel getMySql(MySqlDataModel obj, String valorBusqueda) throws Exception {
+		try {
+			Statement st = getConexionMySqlActual().createStatement();
+			ResultSet rs = st.executeQuery(String.format("SELECT * FROM %s WHERE %s = '%s'", obj.getClass().getSimpleName(), obj.campoBusqueda, valorBusqueda));
+
+			MySqlDataModel result = null;
+			
+			if (rs.next()) {
+				result = obj.crearDesdeBdd(rs);  
+			}
+			
+			rs.close();
+			st.close();
+			
+			return result;
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 
-	private ArrayList<DataModel> getListaMySql(DataModel obj) {
-		
-		return new ArrayList<DataModel>();
+	private ArrayList<DataModel> getListaMySql(MySqlDataModel obj) throws Exception {
+		try {
+			Statement st = getConexionMySqlActual().createStatement();
+			ResultSet rs = st.executeQuery(String.format("SELECT * FROM %s", obj.getClass().getSimpleName()));
+
+			ArrayList<DataModel> result = new ArrayList<DataModel>();
+			
+			while(rs.next()) {
+				result.add(obj.crearDesdeBdd(rs));
+			}
+			
+			rs.close();
+			st.close();
+			
+			return result;
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 	private void editarObjectDb(String queryString, Object enumerated) throws Exception {
@@ -177,8 +226,10 @@ public class ConectorDAL {
 			result.addAll(query.getResultList());
 		}
 		catch (PersistenceException pe) {
-			crearPorDefecto(em, obj);
-			result.addAll(query.getResultList());
+			if (!pe.getMessage().equals("No matching results for a unique query")) {
+				crearPorDefecto(em, obj);
+				result.addAll(query.getResultList());
+			}
 		}
 		
 		em.close();
@@ -196,7 +247,7 @@ public class ConectorDAL {
 	
 	public void crear(DataModel obj) throws Exception {
 		if (obj instanceof MySqlDataModel) {
-
+			crearMySql((MySqlDataModel) obj);
 		}
 		else if (obj instanceof ObjectDbDataModel){
 			crearObjectDb(obj);
@@ -207,13 +258,25 @@ public class ConectorDAL {
 		}
 	}
 	
+	private void crearMySql(MySqlDataModel obj) throws Exception {
+		try {
+			Statement st = getConexionMySqlActual().createStatement();
+			int count = st.executeUpdate(String.format("INSERT INTO %s values %s", obj.getClass().getSimpleName(), obj.crearParametrosBdd()));
+			st.close();
+
+			if (count == 0) {
+				throw new Exception("No se pudo crear ningun elemento.");
+			}
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 	public DataModel get(DataModel obj, String valorBusqueda) 
 			throws Exception {
 		// Dependiendo del tipo de enlace del modelo de datos (DataModel.java):
 		if (obj instanceof MySqlDataModel) {
-			// Si es MySQL:
-			// TODO: Conectar con mysql.
-			return getMySql(obj, valorBusqueda);
+			return getMySql((MySqlDataModel)obj, valorBusqueda);
 		}
 		else if (obj instanceof ObjectDbDataModel){
 			return getObjectDb(obj, valorBusqueda);
@@ -228,7 +291,7 @@ public class ConectorDAL {
 		// Dependiendo del tipo de enlace del modelo de datos (DataModel.java):
 		if (obj instanceof MySqlDataModel) {
 			// Si es MySQL:
-			return getListaMySql(obj);
+			return getListaMySql((MySqlDataModel)obj);
 		}
 		else if (obj instanceof ObjectDbDataModel){
 			return getListaObjectDb(obj);
@@ -242,7 +305,8 @@ public class ConectorDAL {
 	public void editar(DataModel obj, String set, String valorBusqueda, Object enumerated) throws Exception {
 		// Dependiendo del tipo de enlace del modelo de datos (DataModel.java):
 				if (obj instanceof MySqlDataModel) {
-
+					editarMySql(String.format("UPDATE %s SET %s WHERE %s = '%s'",
+							obj.getClass().getSimpleName(), set, obj.campoBusqueda, valorBusqueda));
 				}
 				else if (obj instanceof ObjectDbDataModel){
 					editarObjectDb(String.format("UPDATE %s SET %s WHERE %s = '%s'",
@@ -254,18 +318,63 @@ public class ConectorDAL {
 				}
 	}
 	
+	private void editarMySql(String query) throws Exception {
+		try {
+			Statement st = getConexionMySqlActual().createStatement();
+			int count = st.executeUpdate(query);
+			st.close();
+
+			if (count == 0) {
+				throw new Exception("No se pudo editar ningun elemento.");
+			}
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		
+	}
 	public void borrar(DataModel obj, String valorBusqueda) throws Exception {
+		String query = String.format("DELETE FROM %s WHERE %s = '%s'", 
+				obj.getClass().getSimpleName(), obj.campoBusqueda, valorBusqueda);
+		// Dependiendo del tipo de enlace del modelo de datos (DataModel.java):
+		if (obj instanceof MySqlDataModel) {
+			// Si es MySQL:
+			borrarMySql(query);
+		}
+		else if (obj instanceof ObjectDbDataModel){
+			borrarObjectDb(query);
+		}
+		else {
+			// Si no se reconoce el tipo de enlace:
+			throw new Exception("Enlace de datos desconocido.");
+		}
+	}
+	private void borrarObjectDb(String query) throws Exception {
 		try {
 			EntityManager em = getConexionObjectDbActual();
 
-			em.createQuery(String.format("DELETE FROM %s p WHERE %s = '%s'", 
-					obj.getClass().getSimpleName(), obj.campoBusqueda, valorBusqueda)).executeUpdate();
+			em.createQuery(query).executeUpdate();
 			
 			em.getTransaction().commit();
 			em.close();
 		}
 		catch (PersistenceException pe) {
 			throw new Exception(pe.getMessage());
+		}
+	}
+	
+	private void borrarMySql(String query) throws Exception {
+		try {
+			Statement st = getConexionMySqlActual().createStatement();
+			int count = st.executeUpdate(query);
+			st.close();
+
+			if (count == 0) {
+				throw new Exception("No se pudo borrar ningun elemento.");
+			}
+		}
+		catch (Exception e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 }

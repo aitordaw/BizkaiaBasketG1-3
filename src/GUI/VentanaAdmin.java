@@ -52,7 +52,7 @@ public class VentanaAdmin extends JFrame {
 		btnEquipos.setForeground(Color.BLACK);
 		btnEquipos.setFont(new Font("Arial", Font.BOLD, 20));
 		btnEquipos.setBackground(Color.WHITE);
-		btnEquipos.setBounds(285, 534, 396, 77);
+		btnEquipos.setBounds(285, 336, 396, 77);
 		panelAdmin.add(btnEquipos);
 
 		btnJugadores = new JButton("Jugadores");
@@ -63,7 +63,7 @@ public class VentanaAdmin extends JFrame {
 		});
 		btnJugadores.setFont(new Font("Arial", Font.BOLD, 20));
 		btnJugadores.setBackground(Color.WHITE);
-		btnJugadores.setBounds(285, 336, 396, 77);
+		btnJugadores.setBounds(285, 435, 396, 77);
 		panelAdmin.add(btnJugadores);
 
 		btnPartidos = new JButton("Partidos");
@@ -74,7 +74,7 @@ public class VentanaAdmin extends JFrame {
 		});
 		btnPartidos.setFont(new Font("Arial", Font.BOLD, 20));
 		btnPartidos.setBackground(Color.WHITE);
-		btnPartidos.setBounds(285, 435, 396, 77);
+		btnPartidos.setBounds(285, 534, 396, 77);
 		panelAdmin.add(btnPartidos);
 
 		btnUsuarios = new JButton("Usuarios");
