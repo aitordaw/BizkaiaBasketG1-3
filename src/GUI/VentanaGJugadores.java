@@ -118,8 +118,9 @@ public class VentanaGJugadores extends JFrame {
 		panelFondo.add(lblDni);
 
 		lblGJugadores = new JLabel("Gesti\u00F3n de Jugadores");
+		lblGJugadores.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGJugadores.setForeground(Color.WHITE);
-		lblGJugadores.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblGJugadores.setFont(new Font("Arial", Font.BOLD, 20));
 		lblGJugadores.setBounds(71, 10, 220, 39);
 		panelFondo.add(lblGJugadores);
 

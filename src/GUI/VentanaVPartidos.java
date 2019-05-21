@@ -60,11 +60,11 @@ public class VentanaVPartidos extends JFrame {
 		lblPartidos.setForeground(Color.WHITE);
 		lblPartidos.setFont(new Font("Arial", Font.BOLD, 20));
 		lblPartidos.setBackground(Color.WHITE);
-		lblPartidos.setBounds(21, 48, 375, 24);
+		lblPartidos.setBounds(71, 10, 220, 39);
 		panelVPartidos.add(lblPartidos);
 
 		scpVPartidos = new JScrollPane();
-		scpVPartidos.setBounds(53, 99, 499, 332);
+		scpVPartidos.setBounds(57, 120, 850, 600);
 		panelVPartidos.add(scpVPartidos);
 
 		tblVPartidos = new JTable();

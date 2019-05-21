@@ -62,11 +62,11 @@ public class VentanaTemporada extends JFrame {
 		lblClayEst.setForeground(Color.WHITE);
 		lblClayEst.setFont(new Font("Arial", Font.BOLD, 20));
 		lblClayEst.setBackground(Color.WHITE);
-		lblClayEst.setBounds(21, 48, 375, 24);
+		lblClayEst.setBounds(71, 10, 308, 39);
 		panelTemporada.add(lblClayEst);
 
 		JScrollPane scpVEstadistica = new JScrollPane();
-		scpVEstadistica.setBounds(53, 270, 499, 168);
+		scpVEstadistica.setBounds(57, 430, 850, 300);
 		panelTemporada.add(scpVEstadistica);
 
 		tblEstadisticas = new JTable();
@@ -85,7 +85,7 @@ public class VentanaTemporada extends JFrame {
 		tblEstadisticas.setBackground(new Color(233, 150, 122));
 
 		scpVClasificacion = new JScrollPane();
-		scpVClasificacion.setBounds(53, 99, 499, 168);
+		scpVClasificacion.setBounds(57, 120, 850, 300);
 		panelTemporada.add(scpVClasificacion);
 
 		tblClasificacion = new JTable();

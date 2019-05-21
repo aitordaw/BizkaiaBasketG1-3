@@ -62,13 +62,13 @@ public class VentanaVJugadores extends JFrame {
 		lblJugadores = new JLabel("Jugadores");
 		lblJugadores.setForeground(Color.WHITE);
 		lblJugadores.setBackground(Color.WHITE);
-		lblJugadores.setBounds(21, 48, 375, 24);
+		lblJugadores.setBounds(71, 10, 220, 39);
 		panelVJugadores.add(lblJugadores);
 		lblJugadores.setFont(new Font("Arial", Font.BOLD, 20));
 		lblJugadores.setHorizontalAlignment(SwingConstants.CENTER);
 
 		scpVJugadores = new JScrollPane();
-		scpVJugadores.setBounds(53, 99, 499, 332);
+		scpVJugadores.setBounds(57, 120, 850, 600);
 		panelVJugadores.add(scpVJugadores);
 
 		tblVJugadores = new JTable();

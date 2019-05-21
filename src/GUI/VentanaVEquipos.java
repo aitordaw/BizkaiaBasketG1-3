@@ -65,11 +65,11 @@ public class VentanaVEquipos extends JFrame {
 		lblVEquipos.setForeground(Color.WHITE);
 		lblVEquipos.setFont(new Font("Arial", Font.BOLD, 20));
 		lblVEquipos.setBackground(Color.WHITE);
-		lblVEquipos.setBounds(21, 48, 375, 24);
+		lblVEquipos.setBounds(71, 10, 220, 39);
 		panelVEquipos.add(lblVEquipos);
 
 		scpVEquipos = new JScrollPane();
-		scpVEquipos.setBounds(53, 99, 499, 332);
+		scpVEquipos.setBounds(57, 120, 850, 600);
 		panelVEquipos.add(scpVEquipos);
 
 		tblVEquipos = new JTable();
