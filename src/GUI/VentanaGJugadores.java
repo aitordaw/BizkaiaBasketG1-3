@@ -10,12 +10,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import BLL.ConectorBLL;
+import BLL.EquiposTableModel;
+import BLL.JugadoresTableModel;
+import DAL.MYSQL.Equipo;
+import DAL.MYSQL.Jugador;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
@@ -40,6 +50,7 @@ public class VentanaGJugadores extends JFrame {
 	private JButton btnCrear;
 	private JButton btnVolver;
 	private JComboBox comboEquipo;
+	private JLabel lblMensaje;
 
 	/**
 	 * Create the frame.
@@ -113,18 +124,33 @@ public class VentanaGJugadores extends JFrame {
 		panelFondo.add(lblGJugadores);
 
 		btnCrear = new JButton("Crear");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnCrear();
+			}
+		});
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 12));
 		btnCrear.setBackground(Color.WHITE);
 		btnCrear.setBounds(222, 698, 95, 39);
 		panelFondo.add(btnCrear);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnModificar();
+			}
+		});
 		btnModificar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnModificar.setBackground(Color.WHITE);
 		btnModificar.setBounds(438, 698, 89, 39);
 		panelFondo.add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BtnEliminar();
+			}
+		});
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEliminar.setBackground(Color.WHITE);
 		btnEliminar.setBounds(658, 698, 89, 39);
@@ -135,51 +161,36 @@ public class VentanaGJugadores extends JFrame {
 		panelFondo.add(scpGJugadores);
 
 		tblGJugadores = new JTable();
+		tblGJugadores.setRowSelectionAllowed(true);
 		scpGJugadores.setViewportView(tblGJugadores);
 		tblGJugadores.setShowHorizontalLines(false);
-		tblGJugadores.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "DNI", "Nombre", "Apellido", "Equipo" }));
+		tblGJugadores.setModel(new JugadoresTableModel());
 		tblGJugadores.getColumnModel().getColumn(0).setPreferredWidth(104);
 		tblGJugadores.getColumnModel().getColumn(1).setPreferredWidth(103);
 		tblGJugadores.getColumnModel().getColumn(2).setPreferredWidth(110);
 		tblGJugadores.getColumnModel().getColumn(3).setPreferredWidth(94);
 		tblGJugadores.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblGJugadores.setBackground(new Color(233, 150, 122));
+		tblGJugadores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				try {
+					Jugador jugador = ((JugadoresTableModel)tblGJugadores.getModel()).getElementoEn(tblGJugadores.getSelectedRow());
+					
+					if (jugador == null) // SI no hay fila seleccionada o no se encuentra el usuario
+					{
+						clearFields();
+					} else {
+						setFields(jugador);
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+			}
+		});
+
 
 		btnVolver = new JButton("");
 		btnVolver.addActionListener(new ActionListener() {
@@ -193,6 +204,14 @@ public class VentanaGJugadores extends JFrame {
 		btnVolver.setBounds(0, 0, 48, 36);
 		panelFondo.add(btnVolver);
 		
+		lblMensaje = new JLabel("");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensaje.setForeground(Color.WHITE);
+		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMensaje.setBounds(57, 759, 850, 39);
+		panelFondo.add(lblMensaje);
+
+		
 		comboEquipo = new JComboBox();
 		comboEquipo.setBounds(804, 698, 166, 28);
 		panelFondo.add(comboEquipo);
@@ -202,11 +221,79 @@ public class VentanaGJugadores extends JFrame {
 		lblFondo.setBounds(0, 0, 974, 811);
 		panelFondo.add(lblFondo);
 	}
+	
+	protected void BtnModificar() {
+		if (tblGJugadores.getSelectedRow() != -1 && validarFormulario()) {
+			try {
+				Jugador jugador = ((JugadoresTableModel)tblGJugadores.getModel()).getElementoEn(tblGJugadores.getSelectedRow());
+				
+				ConectorBLL.ModificarJugador(jugador.getDni(), txtDNI.getText(), txtNombre.getText(), txtApellidos.getText(), txtEquipo.getText());
+				((JugadoresTableModel)tblGJugadores.getModel()).Actualizar();
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	protected void BtnCrear() {
+		try {
+			if (validarFormulario()) {
+				ConectorBLL.CrearJugador(txtDNI.getText(), txtNombre.getText(), txtApellidos.getText(), txtEquipo.getText());
+				((JugadoresTableModel)tblGJugadores.getModel()).Actualizar();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private boolean validarFormulario() {
+		lblMensaje.setText("");
+		if(txtDNI.getText().isEmpty()) {
+			lblMensaje.setText("El DNI del jugador es obligatorio.");
+		} else if (txtNombre.getText().isEmpty()) {
+			lblMensaje.setText("El nombre del Jugador es obligatorio.");
+		} else if (txtApellidos.getText().isEmpty()) {
+			lblMensaje.setText("Los apellidos del jugador son obligatorios.");
+		}else if (txtEquipo.getText().isEmpty()) {
+			lblMensaje.setText("El equipo del jugador es obligatoria.");
+		}
+		else {
+			return true;
+		}
+		
+		return false;
+	}
 
 	private void BtnVolver() {
 
 		BLL.AbrirVentanas.vePAdmin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
 
+	}
+	
+	private void BtnEliminar() {
+		try {
+			Jugador jugador = ((JugadoresTableModel)tblGJugadores.getModel()).getElementoEn(tblGJugadores.getSelectedRow());
+			if (jugador != null) {
+				ConectorBLL.BorrarJugador(jugador);
+				((JugadoresTableModel)tblGJugadores.getModel()).Actualizar();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void setFields(Jugador jugador) {
+		txtDNI.setText(jugador.getDni());
+		txtNombre.setText(jugador.getNombre());
+		txtApellidos.setText(jugador.getApellidos());
+		txtEquipo.setText(jugador.getCod_equipo());
+	}
+
+	private void clearFields() {
+		txtDNI.setText("");
+		txtNombre.setText("");
+		txtApellidos.setText("");
+		txtEquipo.setText("");
 	}
 }

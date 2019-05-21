@@ -4,6 +4,7 @@ import DAL.ConectorDAL;
 import DAL.DataModel;
 import DAL.Roles;
 import DAL.MYSQL.Equipo;
+import DAL.MYSQL.Jugador;
 import DAL.OBJECTDB.Usuario;
 
 public class ConectorBLL {
@@ -104,7 +105,19 @@ public class ConectorBLL {
 		EquiposBLL.GetActual().Borrar(equipo.getCodigo());
 	}
 
-	public static void ModificarEquipo(String original,String codigo, String nombre, String municipio, String email, String terreno) throws Exception {
+	public static void ModificarEquipo(String original, String codigo, String nombre, String municipio, String email, String terreno) throws Exception {
 			EquiposBLL.GetActual().Editar(original, codigo, nombre, municipio, email, terreno);
+	}
+	
+	public static void CrearJugador(String dni, String nombre, String apellidos, String cod_equipo) throws Exception {
+		JugadoresBLL.GetActual().Crear(dni, nombre, apellidos, cod_equipo);
+	}
+
+	public static void BorrarJugador(Jugador jugador) throws Exception {
+		JugadoresBLL.GetActual().Borrar(jugador.getDni());
+	}
+
+	public static void ModificarJugador(String original, String dni, String nombre, String apellidos, String cod_equipo) throws Exception {
+		JugadoresBLL.GetActual().Editar(original, dni, nombre, apellidos, cod_equipo);
 	}
 }

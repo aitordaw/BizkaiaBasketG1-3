@@ -1,9 +1,7 @@
 package BLL;
 
 import DAL.ConectorDAL;
-import DAL.Roles;
 import DAL.MYSQL.Equipo;
-import DAL.OBJECTDB.Usuario;
 
 public class EquiposBLL extends BaseBLL<Equipo> {
 
