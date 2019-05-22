@@ -359,7 +359,7 @@ public class VentanaGPartidos extends JFrame {
 		txtPuntosVis.setText(String.valueOf(partido.getPtosVisitante()));
 		txtFaltasLoc.setText(String.valueOf(partido.getFaltLocal()));
 		txtFaltasVis.setText(String.valueOf(partido.getFaltVisitante()));
-		txtTemporada.setText(String.valueOf(partido.getTemporada()));
+		txtTemporada.setText(String.valueOf(partido.getCod_liga()));
 		txtFecha.setText(String.valueOf(partido.getFecha()));
 		
 		        

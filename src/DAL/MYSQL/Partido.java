@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Partido extends MySqlDataModel {
-private String codigo, eqLocal, eqVisitante, temporada, fecha;
+private String codigo, eqLocal, eqVisitante, cod_liga, fecha;
 int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 	
 	public Partido() {
@@ -13,7 +13,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 	}
 	
 	
-	public Partido(String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String temporada, String fecha) {
+	public Partido(String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) {
 		this();
 		this.codigo = codigo;
 		this.eqLocal = eqLocal;
@@ -22,7 +22,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 		this.ptosVisitante = ptosVisitante;
 		this.faltLocal = faltLocal;
 		this.faltVisitante = faltVisitante;
-		this.temporada = temporada;
+		this.cod_liga = cod_liga;
 		this.fecha = fecha;
 	}
 	
@@ -36,7 +36,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 		obj.setPtosVisitante(rs.getInt("puntosvis"));
 		obj.setFaltLocal(rs.getInt("faltasloc"));
 		obj.setFaltVisitante(rs.getInt("faltasvis"));
-		obj.setTemporada(rs.getString("temporada"));
+		obj.setCod_liga(rs.getString("cod_liga"));
 		obj.setFecha(rs.getString("fecha"));
 		
 		return obj;
@@ -44,7 +44,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 
 	@Override
 	public String crearParametrosBdd() {
-		return String.format("('%s','%s','%s','%s','%s','%s','%s','%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, temporada, fecha);
+		return String.format("('%s','%s','%s','%s','%s','%s',%s,'%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
 	}
 
 	public String getCodigo() {
@@ -77,13 +77,13 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 	}
 
 
-	public String getTemporada() {
-		return temporada;
+	public String getCod_liga() {
+		return cod_liga;
 	}
 
 
-	public void setTemporada(String temporada) {
-		this.temporada = temporada;
+	public void setCod_liga(String temporada) {
+		this.cod_liga = temporada;
 	}
 
 

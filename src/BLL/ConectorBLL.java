@@ -124,16 +124,16 @@ public class ConectorBLL {
 		JugadoresBLL.GetActual().Editar(original, dni, nombre, apellidos, cod_equipo);
 	}
 	
-	public static void CrearPartido(String codigo, String eqLocal,  String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String temporada, String fecha) throws Exception {
-		PartidosBLL.GetActual().Crear(codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, temporada, fecha);
+	public static void CrearPartido(String codigo, String eqLocal,  String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) throws Exception {
+		PartidosBLL.GetActual().Crear(codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
 	}
 
 	public static void BorrarPartido(Partido partido) throws Exception {
 		PartidosBLL.GetActual().Borrar(partido.getCodigo());
 	}
 
-	public static void ModificarPartido(String original, String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String temporada, String fecha) throws Exception {
-		PartidosBLL.GetActual().Editar(original, codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, temporada, fecha);
+	public static void ModificarPartido(String original, String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) throws Exception {
+		PartidosBLL.GetActual().Editar(original, codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
 	}
 }
 
