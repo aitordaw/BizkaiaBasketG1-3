@@ -9,19 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
+
 
 import BLL.ConectorBLL;
 import BLL.JugadoresTableModel;
 import DAL.Roles;
-import DAL.MYSQL.Jugador;
+
 
 import javax.swing.JScrollPane;
 
