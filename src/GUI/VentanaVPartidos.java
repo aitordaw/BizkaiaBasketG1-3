@@ -13,7 +13,9 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
+
+import BLL.PartidosTableModel;
+
 import javax.swing.JScrollPane;
 
 public class VentanaVPartidos extends JFrame {
@@ -73,15 +75,7 @@ public class VentanaVPartidos extends JFrame {
 		tblVPartidos.setShowGrid(false);
 		tblVPartidos.setEnabled(false);
 		tblVPartidos.setShowVerticalLines(true);
-		tblVPartidos.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, },
-				new String[] { "Codigo", "Equipo1", "Equipo2", "Fecha", "Resultado" }));
+		tblVPartidos.setModel(new PartidosTableModel());
 		tblVPartidos.getColumnModel().getColumn(1).setPreferredWidth(139);
 		tblVPartidos.getColumnModel().getColumn(2).setPreferredWidth(130);
 		tblVPartidos.getColumnModel().getColumn(3).setPreferredWidth(149);

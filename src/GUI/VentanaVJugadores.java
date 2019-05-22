@@ -90,25 +90,7 @@ public class VentanaVJugadores extends JFrame {
 		tblVJugadores.getColumnModel().getColumn(3).setPreferredWidth(98);
 		tblVJugadores.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblVJugadores.setBackground(new Color(233, 150, 122));
-		tblVJugadores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				try {
-					Jugador jugador = ((JugadoresTableModel)tblVJugadores.getModel()).getElementoEn(tblVJugadores.getSelectedRow());
-					
-					if (jugador == null) // SI no hay fila seleccionada o no se encuentra el usuario
-					{
-						clearFields();
-					} else {
-						setFields(jugador);
-					}
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-					ex.printStackTrace();
-				}
-			}
-		});
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/IMG/Fondo-tr.png")));

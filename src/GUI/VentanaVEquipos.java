@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
+import BLL.EquiposTableModel;
 import DAL.Roles;
 
 import javax.swing.JScrollPane;
@@ -79,11 +80,7 @@ public class VentanaVEquipos extends JFrame {
 		tblVEquipos.setEnabled(false);
 		tblVEquipos.setRowSelectionAllowed(false);
 		tblVEquipos.setShowVerticalLines(true);
-		tblVEquipos.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "Codigo", "Nombre", "Municipio", "E-mail", "Terreno Juego" }));
+		tblVEquipos.setModel(new EquiposTableModel());
 		tblVEquipos.getColumnModel().getColumn(0).setPreferredWidth(67);
 		tblVEquipos.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tblVEquipos.getColumnModel().getColumn(2).setPreferredWidth(105);
