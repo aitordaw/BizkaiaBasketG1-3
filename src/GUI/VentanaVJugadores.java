@@ -9,14 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
+import BLL.JugadoresTableModel;
 import DAL.Roles;
+import DAL.MYSQL.Jugador;
 
 import javax.swing.JScrollPane;
 
@@ -78,49 +83,32 @@ public class VentanaVJugadores extends JFrame {
 		tblVJugadores.setRowSelectionAllowed(false);
 		tblVJugadores.setToolTipText("");
 		tblVJugadores.setShowVerticalLines(true);
-		tblVJugadores
-				.setModel(new DefaultTableModel(
-						new Object[][] { { null, null, null, "" }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null }, },
-						new String[] { "DNI", "Nombre", "Apellido", "Equipo" }));
+		tblVJugadores.setModel(new JugadoresTableModel());
 		tblVJugadores.getColumnModel().getColumn(0).setPreferredWidth(103);
 		tblVJugadores.getColumnModel().getColumn(1).setPreferredWidth(115);
 		tblVJugadores.getColumnModel().getColumn(2).setPreferredWidth(111);
 		tblVJugadores.getColumnModel().getColumn(3).setPreferredWidth(98);
 		tblVJugadores.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblVJugadores.setBackground(new Color(233, 150, 122));
+		tblVJugadores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				try {
+					Jugador jugador = ((JugadoresTableModel)tblVJugadores.getModel()).getElementoEn(tblVJugadores.getSelectedRow());
+					
+					if (jugador == null) // SI no hay fila seleccionada o no se encuentra el usuario
+					{
+						clearFields();
+					} else {
+						setFields(jugador);
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+				}
+			}
+		});
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaVJugadores.class.getResource("/IMG/Fondo-tr.png")));
