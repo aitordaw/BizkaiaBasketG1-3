@@ -18,12 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
-import BLL.EquiposTableModel;
 import BLL.JugadoresTableModel;
-import DAL.MYSQL.Equipo;
 import DAL.MYSQL.Jugador;
 
 import javax.swing.SwingConstants;

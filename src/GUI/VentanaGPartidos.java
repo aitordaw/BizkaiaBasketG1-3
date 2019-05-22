@@ -20,11 +20,8 @@ import javax.swing.JScrollPane;
 
 
 import BLL.ConectorBLL;
-import BLL.EquiposTableModel;
-import BLL.JugadoresTableModel;
 import BLL.PartidosTableModel;
 import DAL.Roles;
-import DAL.MYSQL.Equipo;
 import DAL.MYSQL.Partido;
 
 import javax.swing.SwingConstants;

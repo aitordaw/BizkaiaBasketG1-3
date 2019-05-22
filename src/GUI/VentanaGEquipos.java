@@ -19,14 +19,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
 import BLL.EquiposTableModel;
-import BLL.UsuariosTableModel;
-import DAL.Roles;
 import DAL.MYSQL.Equipo;
-import DAL.OBJECTDB.Usuario;
+
 
 import javax.swing.SwingConstants;
 

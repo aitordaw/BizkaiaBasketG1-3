@@ -16,7 +16,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
 import BLL.UsuariosTableModel;
