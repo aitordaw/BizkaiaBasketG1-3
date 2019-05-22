@@ -225,6 +225,7 @@ public class VentanaGPartidos extends JFrame {
 		panelFondo.add(scpGPartidos);
 
 		tblGPartidos = new JTable();
+		tblGPartidos.setRowSelectionAllowed(true);
 		tblGPartidos.setModel(new PartidosTableModel());
 		tblGPartidos.setEnabled(false);
 		tblGPartidos.setRowSelectionAllowed(false);
