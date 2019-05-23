@@ -44,7 +44,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 
 	@Override
 	public String crearParametrosBdd() {
-		return String.format("('%s','%s','%s','%s','%s','%s',%s,'%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
+		return String.format("('%s','%s','%s',%s,%s,%s,%s,'%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
 	}
 
 	public String getCodigo() {

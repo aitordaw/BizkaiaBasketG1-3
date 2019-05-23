@@ -21,17 +21,20 @@ public class EquiposBLL extends BaseBLL<Equipo> {
 		return null;
 	}
 	
+	// método para crear un modelo de datos vacío uy parte de la consulta SQL
 	public void Editar(String original, String codigo, String nombre, String municipio, String email, String terreno) 
 			throws Exception {		
 		ConectorDAL.GetActual().editar(new Equipo(), 
 				String.format("cod_equipo = '%s', nom_equipo = '%s', municipio= '%s', email = '%s', terreno = '%s'", 
 						codigo, nombre, municipio, email, terreno), original, null);
 	}
-
+	
+	// Crea un modelo de datos relleno
 	public void Crear(String codigo, String nombre, String municipio, String email, String terreno) throws Exception {
 		ConectorDAL.GetActual().crear(new Equipo(codigo, nombre, municipio, email, terreno));
 	}
 
+	// Crea un modelo de datos vacío
 	public void Borrar(String equipo) throws Exception {
 		ConectorDAL.GetActual().borrar(new Equipo(), equipo);
 	}

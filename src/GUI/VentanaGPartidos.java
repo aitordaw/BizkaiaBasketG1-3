@@ -224,8 +224,7 @@ public class VentanaGPartidos extends JFrame {
 		tblGPartidos = new JTable();
 		tblGPartidos.setRowSelectionAllowed(true);
 		tblGPartidos.setModel(new PartidosTableModel());
-		tblGPartidos.setEnabled(false);
-		tblGPartidos.setRowSelectionAllowed(false);
+		tblGPartidos.setEnabled(true);
 		tblGPartidos.setShowHorizontalLines(false);
 		scpGPartidos.setViewportView(tblGPartidos);
 		tblGPartidos.setBorder(new EmptyBorder(5, 5, 5, 5));

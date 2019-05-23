@@ -24,11 +24,11 @@ private static PartidosBLL actual;
 	public void Editar(String original, String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) 
 			throws Exception {		
 		ConectorDAL.GetActual().editar(new Partido(), 
-				String.format("cod_partido = '%s', equipoloc = '%s', equipovis = '%s', puntosloc = '%s', puntosvis = '%s', faltasloc = '%s', faltasvis = '%s', cod_liga = '%s', fecha = '%s'", 
+				String.format("cod_partido = '%s', equipoloc = '%s', equipovis = '%s', puntosloc = %s, puntosvis = %s, faltasloc = %s, faltasvis = %s, cod_liga = '%s', fecha = '%s'", 
 					 codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha), original, null);
 	}
 
-	public void Crear(String eqLocal, String codigo, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) throws Exception {
+	public void Crear(String codigo, String eqLocal, String eqVisitante, int ptosLocal, int ptosVisitante, int faltLocal, int faltVisitante, String cod_liga, String fecha) throws Exception {
 		ConectorDAL.GetActual().crear(new Partido(codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha));
 	}
 
