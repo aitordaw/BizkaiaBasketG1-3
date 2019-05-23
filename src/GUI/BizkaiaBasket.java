@@ -1,11 +1,9 @@
 package GUI;
 
-import java.util.ArrayList;
+
 
 import BLL.AbrirVentanas;
 import DAL.ConectorDAL;
-import DAL.DataModel;
-import DAL.MYSQL.Equipo;
 
 public class BizkaiaBasket {
 			
