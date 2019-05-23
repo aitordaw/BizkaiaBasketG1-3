@@ -1,7 +1,5 @@
 package BLL;
 
-import java.sql.Date;
-
 import DAL.ConectorDAL;
 import DAL.DataModel;
 import DAL.Roles;

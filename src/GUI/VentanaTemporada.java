@@ -13,14 +13,15 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
+
+import BLL.TemporadaTableModel;
+
 import javax.swing.JScrollPane;
 
 public class VentanaTemporada extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tblClasificacion;
-	private JTable tblEstadisticas;
 	private JPanel panelTemporada;
 	private JButton btnVolver;
 	private JLabel lblClayEst;
@@ -57,48 +58,27 @@ public class VentanaTemporada extends JFrame {
 		btnVolver.setBounds(0, 0, 48, 36);
 		panelTemporada.add(btnVolver);
 
-		lblClayEst = new JLabel("Clasificacion y Estadisticas");
+		lblClayEst = new JLabel("Clasificaci\u00F3n");
 		lblClayEst.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClayEst.setForeground(Color.WHITE);
 		lblClayEst.setFont(new Font("Arial", Font.BOLD, 20));
 		lblClayEst.setBackground(Color.WHITE);
-		lblClayEst.setBounds(71, 10, 308, 39);
+		lblClayEst.setBounds(71, 10, 145, 39);
 		panelTemporada.add(lblClayEst);
 
-		JScrollPane scpVEstadistica = new JScrollPane();
-		scpVEstadistica.setBounds(57, 430, 850, 300);
-		panelTemporada.add(scpVEstadistica);
-
-		tblEstadisticas = new JTable();
-		scpVEstadistica.setViewportView(tblEstadisticas);
-		tblEstadisticas.setShowHorizontalLines(false);
-		tblEstadisticas.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
-				new String[] { "Equipo", "Falta C", "Falta R", "Triple C", "Triple R", "Cambios" }));
-		tblEstadisticas.getColumnModel().getColumn(0).setPreferredWidth(103);
-		tblEstadisticas.setShowVerticalLines(true);
-		tblEstadisticas.setBorder(new EmptyBorder(5, 5, 5, 5));
-		tblEstadisticas.setBackground(new Color(233, 150, 122));
-
 		scpVClasificacion = new JScrollPane();
-		scpVClasificacion.setBounds(57, 120, 850, 300);
+		scpVClasificacion.setBounds(57, 120, 850, 600);
 		panelTemporada.add(scpVClasificacion);
 
 		tblClasificacion = new JTable();
+		tblClasificacion.setEnabled(false);
 		scpVClasificacion.setViewportView(tblClasificacion);
-		tblClasificacion.setShowHorizontalLines(false);
-		tblClasificacion.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "Equipo", "PJ", "PG", "PP", "NP", "TTS", "PTS" }));
-		tblClasificacion.getColumnModel().getColumn(0).setPreferredWidth(124);
+		tblClasificacion.setModel(new TemporadaTableModel());
+		tblClasificacion.getColumnModel().getColumn(0).setPreferredWidth(67);
+		tblClasificacion.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tblClasificacion.getColumnModel().getColumn(2).setPreferredWidth(105);
+		tblClasificacion.getColumnModel().getColumn(3).setPreferredWidth(159);
+		tblClasificacion.getColumnModel().getColumn(4).setPreferredWidth(162);
 		tblClasificacion.setShowVerticalLines(true);
 		tblClasificacion.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblClasificacion.setBackground(new Color(233, 150, 122));

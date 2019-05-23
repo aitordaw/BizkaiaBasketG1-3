@@ -13,7 +13,6 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
-import javax.swing.table.DefaultTableModel;
 
 import BLL.ConectorBLL;
 import BLL.EquiposTableModel;

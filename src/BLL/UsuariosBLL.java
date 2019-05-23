@@ -1,7 +1,5 @@
 package BLL;
 
-import javax.jdo.JDOHelper;
-
 import DAL.ConectorDAL;
 import DAL.Roles;
 import DAL.OBJECTDB.Usuario;
