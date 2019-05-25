@@ -4,7 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Partido extends MySqlDataModel {
-private String codigo, eqLocal, eqVisitante, cod_liga, fecha;
+private String codigo, eqLocal, eqVisitante, temporada, cod_liga, fecha;
+public String getTemporada() {
+	return temporada;
+}
+
+
+public void setTemporada(String temporada) {
+	this.temporada = temporada;
+}
+
 int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 	
 	public Partido() {
@@ -44,7 +53,7 @@ int faltVisitante, faltLocal, ptosLocal, ptosVisitante;
 
 	@Override
 	public String crearParametrosBdd() {
-		return String.format("('%s','%s','%s',%s,%s,%s,%s,'%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, cod_liga, fecha);
+		return String.format("('%s','%s','%s',%s,%s,%s,%s,'%s','%s','%s')", codigo, eqLocal, eqVisitante, ptosLocal, ptosVisitante, faltLocal, faltVisitante, temporada, cod_liga, fecha);
 	}
 
 	public String getCodigo() {

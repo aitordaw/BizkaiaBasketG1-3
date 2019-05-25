@@ -62,6 +62,7 @@ public class ConectorDAL {
 		actual = new ConectorDAL(pUrlMySql, pUsuarioMySql, pPasswordMySql, pUrlObjectDb, pUsuarioObjectDb, pPasswordObjectDb);
 	}
 	
+	// Devuelve tipo EntityManager
 	private EntityManager getConexionObjectDbActual() 
 			throws PersistenceException {
 		EntityManager result = objectDbFactoryActual.createEntityManager();

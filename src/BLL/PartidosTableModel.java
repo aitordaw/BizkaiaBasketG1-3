@@ -70,9 +70,11 @@ public class PartidosTableModel extends AbstractTableModel {
 					return partido.getFaltLocal();
 				case 6: 
 					return partido.getFaltVisitante();
-				case 7:
+				case 7: 
+					return partido.getFaltVisitante();
+				case 8:
 					return partido.getCod_liga();
-				case 8: 
+				case 9: 
 					return partido.getFecha();
 				default:
 					return null;
