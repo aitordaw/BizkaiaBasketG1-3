@@ -46,7 +46,7 @@ public class VentanaGJugadores extends JFrame {
 	private JButton btnModificar;
 	private JButton btnCrear;
 	private JButton btnVolver;
-	private JComboBox comboEquipo;
+	private JComboBox<?> comboEquipo;
 	private JLabel lblMensaje;
 
 	/**
@@ -210,7 +210,7 @@ public class VentanaGJugadores extends JFrame {
 		panelFondo.add(lblMensaje);
 
 		
-		comboEquipo = new JComboBox();
+		comboEquipo = new JComboBox<Object>();
 		comboEquipo.setBounds(804, 698, 166, 28);
 		panelFondo.add(comboEquipo);
 

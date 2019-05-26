@@ -15,7 +15,6 @@ import javax.persistence.Query;
 
 import DAL.MYSQL.MySqlDataModel;
 import DAL.OBJECTDB.ObjectDbDataModel;
-import DAL.OBJECTDB.Usuario;
 
 public class ConectorDAL {
 
@@ -211,6 +210,7 @@ public class ConectorDAL {
 		return result;
 	}
 	// Metodo para obtener todos los elementos de OBjectDB
+	@SuppressWarnings("unchecked")
 	private ArrayList<DataModel> listaObjectDb(DataModel obj, String queryString) throws Exception {
 		EntityManager em;
 		ArrayList<DataModel> result = new ArrayList<DataModel>();
@@ -288,7 +288,7 @@ public class ConectorDAL {
 		// Dependiendo del tipo de enlace del modelo de datos (DataModel.java):
 		// Si es MySQL
 		if (obj instanceof MySqlDataModel) {
-// ENviamos la solicitud al metodo de obtener de MySQL
+			// ENviamos la solicitud al metodo de obtener de MySQL
 			return getMySql((MySqlDataModel)obj, valorBusqueda);
 		}// SI no si es ObjectDB
 		else if (obj instanceof ObjectDbDataModel){

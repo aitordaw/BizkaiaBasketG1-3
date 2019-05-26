@@ -41,7 +41,7 @@ public class VentanaGUsuarios extends JFrame {
 	private JLabel lblFondo;
 	private JButton btnVolver;
 	private JScrollPane scpGUsuarios;
-	private JComboBox comboBox;
+	private JComboBox<?> comboBox;
 		
 	// Definir Necesidades Previas
 	int row;
@@ -192,7 +192,7 @@ public class VentanaGUsuarios extends JFrame {
 				lblRol.setBounds(330, 678, 188, 27);
 				panelFondo.add(lblRol);
 				
-				comboBox = new JComboBox(Roles.values());
+				comboBox = new JComboBox<Object>(Roles.values());
 				comboBox.setSelectedItem(null);
 				comboBox.setBounds(330, 718, 188, 28);
 				panelFondo.add(comboBox);

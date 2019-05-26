@@ -25,7 +25,6 @@ import DAL.Roles;
 import DAL.MYSQL.Partido;
 
 import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
 
 public class VentanaGPartidos extends JFrame {
 	private static final long serialVersionUID = 1L;
