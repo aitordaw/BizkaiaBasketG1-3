@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import DAL.DataModel;
 import DAL.Roles;
-
+//Modelo de datos ObjectDB para Usuarios (hereda de ObjectDbDataModel.java)
 @Entity
 public class Usuario extends ObjectDbDataModel {
 	private static final long serialVersionUID = 2871418349717969581L;
@@ -54,7 +54,7 @@ public class Usuario extends ObjectDbDataModel {
 	public void setRol(Roles rol) {
 		this.rol = rol;
 	}
-	
+	// Metodo para generar elementos por defecto
 	@Override
 	public ArrayList<DataModel> crearPorDefecto() {
 		ArrayList<DataModel> result = new ArrayList<DataModel>();

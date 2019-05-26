@@ -184,16 +184,16 @@ public class VentanaGEquipos extends JFrame {
 		tblGEquipos.setBorder(new EmptyBorder(5, 5, 5, 5));
 		tblGEquipos.setBackground(new Color(233, 150, 122));
 		tblGEquipos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
+			// Cuando cambia el elemento seleccionado de la lista
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				try {
+				try {// Le pedimos a *TableModel.java el elemento seleccionado
 					Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
 					
 					if (equipo == null) // SI no hay fila seleccionada o no se encuentra el usuario
-					{
+					{	// Limpiamos los campos
 						clearFields();
-					} else {
+					} else {// Si no establecemos los campos con los datos recogidos
 						setFields(equipo);
 					}
 				} catch (Exception ex) {
@@ -226,41 +226,50 @@ public class VentanaGEquipos extends JFrame {
 		lblFondo.setBounds(0, 0, 974, 811);
 		panelFondo.add(lblFondo);
 	}
-
+	// Metodo lanzado al presionar el boton de modificar
 	protected void BtnModificar() {
+		// Si hay alguna fila seleccionada y se han introducido los datos correctamente
 		if (tblGEquipos.getSelectedRow() != -1 && validarFormulario()) {
-			try {
+			try {// PEdimos a *TableModel.java el elemento seleccionado
 				Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
-				
+				// Enviamos los datos introducidos a la BLL
 				ConectorBLL.ModificarEquipo(equipo.getCodigo(), txtCodigo.getText(), txtNombre.getText(), txtMunicipio.getText(), txtEmail.getText(), txtTj.getText());
+				// Actualizamos la tabla
 				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
-
+	// Metodo lanzado al presionar el boton de crear
 	protected void BtnCrear() {
-		try {
+		try {// Si los dstos introducidos son correctos
 			if (validarFormulario()) {
+				// Enviamos los datos introducidos a la BLL
 				ConectorBLL.CrearEquipo(txtCodigo.getText(), txtNombre.getText(), txtMunicipio.getText(), txtEmail.getText(), txtTj.getText());
+				// Actualizamos la tabla
 				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	// Metodo para validar los dstos introducidos
 	private boolean validarFormulario() {
 		lblMensaje.setText("");
+		// Si los datos en el campo de codigo esta vacio
 		if(txtCodigo.getText().isEmpty()) {
 			lblMensaje.setText("El codigo de equipo es obligatorio.");
+			// Si los datos en el campo de nombre esta vacio
 		} else if (txtNombre.getText().isEmpty()) {
 			lblMensaje.setText("El nombre del equipo es obligatorio.");
+			// Si los datos en el campo de municipio esta vacio
 		} else if (txtMunicipio.getText().isEmpty()) {
 			lblMensaje.setText("El municipio es obligatorio.");
+			// Si los datos en el campo de email esta vacio
 		}else if (txtEmail.getText().isEmpty()) {
 			lblMensaje.setText("La dirección de e-mail es obligatoria.");
+			// Si los datos en el campo de terreno estça vacio
 		}else if (txtTj.getText().isEmpty()) {
 			lblMensaje.setText("El terreno de juego es obligatorio.");
 		}
@@ -270,26 +279,30 @@ public class VentanaGEquipos extends JFrame {
 		
 		return false;
 	}
-
+	// Metodo lanzado al presionar el boton de volver
 	private void BtnVolver() {
 
 		BLL.AbrirVentanas.vePAdmin();
 		dispose(); // Elimina el objeto en memoria (cierra la ventana)
 
 	}
-
+	// Metodo lanzado al presionar el boton de eliminar
 	private void BtnEliminar() {
 		try {
+			// PEdimos a *TableModel.java el elemento seleccionado
 			Equipo equipo = ((EquiposTableModel)tblGEquipos.getModel()).getElementoEn(tblGEquipos.getSelectedRow());
+			// Si  hay fila seleciconada
 			if (equipo != null) {
+				// Enviamos los datos introducidos a la BLL
 				ConectorBLL.BorrarEquipo(equipo);
+				// Actualizamos la tabla
 				((EquiposTableModel)tblGEquipos.getModel()).Actualizar();
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	// Metodo para rellenar los campos
 	private void setFields(Equipo equipo) {
 		txtCodigo.setText(equipo.getCodigo());
 		txtNombre.setText(equipo.getNombre());
@@ -297,7 +310,7 @@ public class VentanaGEquipos extends JFrame {
 		txtEmail.setText(equipo.getEmail());
 		txtTj.setText(equipo.getTerreno());
 	}
-
+	// Metodo para vaciar los campos
 	private void clearFields() {
 		txtCodigo.setText("");
 		txtNombre.setText("");

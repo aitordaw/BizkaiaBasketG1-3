@@ -2,7 +2,7 @@ package DAL.MYSQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+// Modelo de datos MySQL para equipos (hereda de MySqlDataModel.java)
 public class Equipo extends MySqlDataModel {
 	private String codigo, nombre, municipio, email, terreno;
 	
@@ -21,7 +21,7 @@ public class Equipo extends MySqlDataModel {
 		this.terreno = terreno;
 	}
 
-
+	// Metodo para generar una instancia a partir de los datos de MySQL
 	@Override
 	public Equipo crearDesdeBdd(ResultSet rs) throws SQLException {
 		Equipo obj = new Equipo ();
